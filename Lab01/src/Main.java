@@ -88,26 +88,10 @@ public class Main {
 
     //zadanie 7
     public static boolean triangle(int a, int b, int c){
-        int licz;
-        licz = 0;
-        if(a+b > c) {
-            licz += 1;
+        if(a + b > c && a + c > b && c + b > a){
+            return true;
+        }else {
+            return false;
         }
-        else{
-            licz +=0;
-        }
-        if(a+c > b){
-            licz +=1;
-        }
-        else{
-            licz +=0;
-        }
-        if(b+c > a){
-            licz +=1;
-        }
-        else{
-            licz +=0;
-        }
-        return licz == 3;
     }
 }
