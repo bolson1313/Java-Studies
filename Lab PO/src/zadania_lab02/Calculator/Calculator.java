@@ -1,4 +1,4 @@
-package Calculator;
+package zadania_lab02.Calculator;
 
 import java.util.Scanner;
 
