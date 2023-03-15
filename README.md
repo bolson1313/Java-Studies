@@ -1,4 +1,4 @@
-# Java Studies
+## Java Studies
   # LAB_01
     1.Napisz metodę, która zwróci twoje imię oraz aktualny wiek. 
     2.Napisz  metodę,  która  jako  argument  przyjmuje  2  liczby  i  wypisuje  ich  sumę,  różnicę  i  iloczyn. Argumenty przekazywane do metody są liczbami               wprowadzanymi przez użytkownika z klawiatury.
