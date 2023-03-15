@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class lab01{
     public static void main(String[] args) {
         //zczytywanie liczb
         Scanner input = new Scanner(System.in);
