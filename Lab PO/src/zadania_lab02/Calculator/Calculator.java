@@ -2,7 +2,7 @@ package zadania_lab02.Calculator;
 
 import java.util.Scanner;
 
-public class zadanie2 {
+public class Calculator {
     public static void main(String[] args) {
         Run();
     }
@@ -46,12 +46,17 @@ public class zadanie2 {
                     break;
                 case 9:
                     conf = ReadString();
-                    System.exit(1);
+                    if(conf.equals("T") || conf.equals("t")){
+                        System.exit(1);
+                    }else{
+                        i=1;
+                    }
                     break;
                 case 10:
                     Run();
                     break;
                 default:
+                    Run();
                     break;
             }
 
@@ -78,6 +83,7 @@ public class zadanie2 {
     public static String ReadString(){
         Scanner inputStr = new Scanner(System.in);
         String confirm;
+        System.out.println("Jeśli chcesz wyjść wpisz t lub T jeśli nie cokolwiek innego");
         confirm = inputStr.next();
         return confirm;
     }
