@@ -19,11 +19,12 @@ public class zadanie7 {
 
     public static void numbers(int a){
         Scanner input2 = new Scanner(System.in);
-        int num;
-        while(a==0){
-            System.out.println("Podaj "+a+" liczbe ciagu: ");
+        int num, i;
+        i=0;
+        while(a!=i){
+            i++;
+            System.out.println("Podaj "+i+" liczbe ciagu: ");
             num = input2.nextInt();
-            a--;
         }
     }
 }

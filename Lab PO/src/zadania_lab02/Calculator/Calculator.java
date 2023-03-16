@@ -48,8 +48,6 @@ public class Calculator {
                     conf = ReadString();
                     if(conf.equals("T") || conf.equals("t")){
                         System.exit(1);
-                    }else{
-                        i=1;
                     }
                     break;
                 case 10:
