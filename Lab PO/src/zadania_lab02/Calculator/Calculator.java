@@ -9,12 +9,10 @@ public class Calculator {
 
     //run method
     public static void Run(){
-        int i;
-        i = 10;
         double a = ReadVar();
         double b = ReadVar();
 
-        while(i!=0){
+        while(true){
             Menu();
             String conf;
             switch(Pick()){
