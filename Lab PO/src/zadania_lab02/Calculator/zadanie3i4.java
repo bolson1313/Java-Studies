@@ -1,4 +1,4 @@
-package zadania_lab03;
+package zadania_lab02.Calculator;
 
 import java.util.*;
 
