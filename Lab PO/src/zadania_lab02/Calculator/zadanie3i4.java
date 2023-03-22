@@ -2,7 +2,7 @@ package zadania_lab02.Calculator;
 
 import java.util.*;
 
-import static zadania_lab02.Calculator.Calculator.ReadString;
+import static zadania_lab02.Calculator.Calculator_zad2.ReadString;
 
 public class zadanie3i4 {
     public static void main(String[] args) {

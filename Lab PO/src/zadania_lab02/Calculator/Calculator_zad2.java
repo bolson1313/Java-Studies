@@ -2,7 +2,7 @@ package zadania_lab02.Calculator;
 
 import java.util.Scanner;
 
-public class Calculator {
+public class Calculator_zad2 {
     public static void main(String[] args) {
         Run();
     }
