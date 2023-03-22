@@ -88,7 +88,7 @@ public class zadanie3i4 {
                         }
                     }
                     System.out.println("Najmniejsza wartosc w tablicy to: " +min);
-                } else if (option == 10) {
+                } else if (option == 10) { //max value in array
                     int max = 1;
                     for(int i = 0; i < RunArray.length; i++){
                         if(RunArray[i]>max){
@@ -96,12 +96,12 @@ public class zadanie3i4 {
                         }
                     }
                     System.out.println("Najwieksza wartosc w tablicy to: " +max);
-                } else if (option == 11) {
+                } else if (option == 11) { //exit
                     conf = ReadString();
                     if(conf.equals("T") || conf.equals("t")){
                         System.exit(1);
                     }
-                } else if (option == 12) {
+                } else if (option == 12) { //reload script
                     Run();
                 }
             } while (true);
