@@ -1,3 +1,5 @@
+package zadania_lab01;
+
 import java.util.Random;
 import java.util.Scanner;
 

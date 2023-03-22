@@ -2,7 +2,7 @@ package zadania_lab03;
 
 import java.util.Scanner;
 
-public class zadani3 {
+public class zadanie3 {
     public static void main(String[] args) {
         int n = evenNumbersCounter();
         System.out.println("Suma liczb parzystych w podanym ciągu wynosi: " +n);
