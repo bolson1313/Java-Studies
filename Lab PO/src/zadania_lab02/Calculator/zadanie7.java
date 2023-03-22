@@ -4,27 +4,39 @@ import java.util.Scanner;
 
 public class zadanie7 {
     public static void main(String[] args) {
-        int i;
-        i = read();
-        numbers(5);
+        bubbleSorting();
     }
-
-    public static int read(){
+    public static int[] newArray(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Podaj ile liczb chcesz wprowadzic: ");
-        int result;
-        result = input.nextInt();
-        return result;
+        int tabSize;
+        System.out.print("Podaj rozmiar tablicy: ");
+        tabSize = input.nextInt();
+        int[] tabN = new int[tabSize];
+        for(int i = 0; i < tabN.length; i++){
+            System.out.print("Podaj [" +i+ "] element tablicy: ");
+            tabN[i] = input.nextInt();
+        }
+        return tabN;
     }
 
-    public static void numbers(int a){
-        Scanner input2 = new Scanner(System.in);
-        int num, i;
-        i=0;
-        while(a!=i){
-            i++;
-            System.out.println("Podaj "+i+" liczbe ciagu: ");
-            num = input2.nextInt();
+    public static void bubbleSorting(){
+        int[] tabN = newArray();
+        int[] temp = new int[1];
+        int count = tabN.length;
+        do {
+            for(int i = 0; i < count-1; i++){
+                if (tabN[i] > tabN[i + 1]) {
+                    temp[0] = tabN[i];
+                    tabN[i] = tabN[i + 1];
+                    tabN[i + 1] = temp[0];
+                }
+            }
+            count = count -1;
+        }while(count > 1);
+
+
+        for(int i = 0; i < tabN.length; i++){
+            System.out.println("["+i+"] = "+tabN[i]);
         }
     }
 }

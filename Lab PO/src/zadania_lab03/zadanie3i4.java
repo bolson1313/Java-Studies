@@ -27,7 +27,6 @@ public class zadanie3i4 {
             Scanner input = new Scanner(System.in);
             do {
                 Menu();
-                clearScreen();
                 System.out.print("Wybierz opcje: ");
                 option =  input.nextInt();
                 System.out.println("\n");
@@ -106,10 +105,7 @@ public class zadanie3i4 {
                 }
             } while (true);
         }
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
+
         //program menu
         public static void Menu() {
             System.out.println("Witaj w narzędziu tablic! \n\n1. Wprowadź zmienne do tablicy\n2. Wypisz tablice od początku do końca\n3. Wypisz tablice od końca do początku\n4. Wypisanie elementów nieparzystych indeksach\n5. Wypisanie elementów parzystych indeksach\n6. Suma elementów tablicy\n7. Iloczyn elementów tablicy\n8. Średnia wartość tablicy\n9. Wartość minimalna tablicy\n10. Wartość maksymalna tablicy\n11. Wyjdź\n12.Zresetuj program");
