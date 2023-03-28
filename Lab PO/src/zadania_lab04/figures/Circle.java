@@ -1,21 +1,35 @@
-package lab04.figures;
+package zadania_lab04.figures;
 
 public class Circle {
-    double name, radius, area, square;
+    String name;
+    double radius;
+    public double Field(double radius){
+        return Math.PI * Math.pow(radius, 2);
+    }
+    public double Circut(double radius){
+        return 2*Math.PI * radius;
+    }
 
-    public Circle(double radius) {
+    public void output(){
+        System.out.println("Wybrana figura: " +this.getName());
+        System.out.println("Promień koła: " +this.getRadius());
+        System.out.format("Pole wynosi: %.2f\n" ,this.Field(radius));
+        System.out.format("Obwód wynosi: %.2f" ,this.Circut(radius));
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public void setRadius(double radius) {
         this.radius = radius;
     }
-
-    public double circleArea(double radius){
-        area = Math.PI * Math.pow(radius, 2);
-        return area;
-    }
-
-    public double circleSquare(double radius){
-        square = 2 * Math.PI * radius;
-        return square;
-    }
-
-    
 }

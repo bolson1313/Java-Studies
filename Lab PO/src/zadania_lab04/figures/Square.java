@@ -1,28 +1,35 @@
-package lab04.figures;
+package zadania_lab04.figures;
 
 public class Square {
-    double name, a, area, square;
-
-    public void setA(double a) {
-        this.a = a;
+    String name;
+    double side;
+    public double Field(double side){
+        return Math.pow(side, 2);
+    }
+    public double Circut(double side){
+        return 4*side;
     }
 
-    public double squareArea(double a){
-        area = a *4;
-        return area;
+    public void output(){
+        System.out.println("Wybrana figura: " +this.getName());
+        System.out.println("Długośc boku kwadratu: " +this.getSide());
+        System.out.format("Pole wynosi: %.2f\n" ,this.Field(side));
+        System.out.format("Obwód wynosi: %.2f" ,this.Circut(side));
     }
 
-    public double squareSquare(double a){
-        square = a*a;
-        return square;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public String toString() {
-        return "Square{" +
-                "a=" + a +
-                ", area=" + area +
-                ", square=" + square +
-                '}';
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSide() {
+        return side;
+    }
+
+    public void setSide(double side) {
+        this.side = side;
     }
 }

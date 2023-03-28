@@ -1,4 +1,4 @@
-package lab04;
+package zadania_lab04;
 
 public class Person {
     //definicja pól
