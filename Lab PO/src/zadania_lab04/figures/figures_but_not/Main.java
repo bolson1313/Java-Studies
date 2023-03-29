@@ -1,6 +1,5 @@
 package zadania_lab04.figures.figures_but_not;
 
-import zadania_lab04.figures.Circle;
 
 import java.util.Scanner;
 
