@@ -1,28 +1,16 @@
 package zadania_lab04.figures.figures_but_not;
 
 public class Figures {
-    String nameOfFigure;
-
-    public String getNameOfFigure() {
-        return nameOfFigure;
-    }
-
-    public void setNameOfFigure(String nameOfFigure) {
-        this.nameOfFigure = nameOfFigure;
-    }
-
-
 
     //podklasa koła
     public static class Circle{
         double radius;
 
-        public double getRadius() {
-            return radius;
-        }
+        String name;
 
-        public void setRadius(double radius) {
+        public Circle(double radius, String name) {
             this.radius = radius;
+            this.name = name;
         }
 
         public double Field(double radius){
@@ -31,7 +19,30 @@ public class Figures {
         public double Circut(double radius){
             return 2*Math.PI * radius;
         }
+
+        public void output(){
+            System.out.println("Wybrana figura: "+this.name+ "\nPromień koła: " +this.radius+ "\nObwód koła: " +this.Circut(radius)+ "\nPole koła: "+this.Field(radius));
+        }
     }
 
     //podklasa kwadratu
+    public static class Square{
+        double side;
+        String name;
+
+        public Square(double side, String name) {
+            this.side = side;
+            this.name = name;
+        }
+
+        public double Field(double side){
+            return Math.pow(side, 2);
+        }
+        public double Circut(double side){
+            return 4 * side;
+        }
+        public void output(){
+            System.out.println("Wybrana figura: "+this.name+ "\nPromień koła: " +this.side+ "\nObwód koła: " +this.Circut(side)+ "\nPole koła: "+this.Field(side));
+        }
+    }
 }

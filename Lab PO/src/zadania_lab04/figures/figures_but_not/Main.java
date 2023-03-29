@@ -11,9 +11,13 @@ public class Main {
                 switch (name){
                     case "koło":
                         System.out.println("Podaj promień koła");
-                        Figures.Circle circle = new Figures.Circle();
-                        circle.setRadius(5);
-                        System.out.println(circle.Field(circle.getRadius()));
+                        Figures.Circle circle = new Figures.Circle(readDouble(), name);
+                        circle.output();
+                        break;
+                    case "kwadrat":
+                        System.out.println("Podaj dl boku:");
+                        Figures.Square square = new Figures.Square(readDouble(), name);
+                        square.output();
                         break;
                 }
         }
