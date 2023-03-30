@@ -1,6 +1,7 @@
 package zadania_lab04.zadanie2;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
 
