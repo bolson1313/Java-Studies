@@ -15,4 +15,3 @@ public class Main {
        // int number = 123123123;
         
     }
-}
