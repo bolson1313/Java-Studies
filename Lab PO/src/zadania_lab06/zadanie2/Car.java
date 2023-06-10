@@ -21,9 +21,9 @@ public class Car {
         this.color = color;
         this.yearOfProd = yearOfProd;
         this.mileage = mileage;
-        if(this.mileage <= 0){
+        while(this.mileage <=0){
             System.out.print("Przebieg " +this.mark+ " " +this.model+ " jest ujemny, podaj prawidłowy: ");
-            this.mileage = (int) InputDouble();
+            this.mileage = (int)InputDouble();
         }
     }
 
