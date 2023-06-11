@@ -15,11 +15,11 @@ public class Main {
         //tablica z objektów
         Motorcycle[] motorcyclesArray = {honda, suzuki, kawasaki, romet};
         //lista z tablicy objektow
-        List<Object> motorcyclesList = new ArrayList<>(Arrays.asList(motorcyclesArray));
+        List<Motorcycle> motorcyclesList = new ArrayList<>(Arrays.asList(motorcyclesArray));
 
 
         //wyluskanie 2 elementow od 1-3(nie liczać elementu z indeksem 3) utworzy sie nowa lista posiadająca dwa elementy o indeksach 1,2
-        List<Object> motoSubList = new ArrayList<>(motorcyclesList.subList(1,3));
+        List<Motorcycle> motoSubList = new ArrayList<>(motorcyclesList.subList(1,3));
 
         System.out.println("Sub lista = " +motoSubList);
         System.out.println("Oryginalna lista = " +motorcyclesList);
