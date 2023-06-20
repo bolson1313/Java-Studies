@@ -20,8 +20,10 @@ public class Menu {
     public void OpenMenu(){
         //pole do logowania
         //zmienne pomocnicze
-        int id = Inputs.InputInt("Podaj id: ");
+        System.out.println("==== |Podaj potrzebne dane do wejscia!| ====");
+        int id = Inputs.InputInt("Podaj ID: ");
         int accesCode = Inputs.InputInt("Podaj kod dostępu: ");
+        System.out.println("=============================================");
         //tworzenie obiektów wszystkich klas
         Burglary burglary = new Burglary(0);
         DataBase dataBase = new DataBase("SELECT id, name, surname, acces_code, authorized FROM users WHERE id="+ id + " AND acces_code="+ accesCode); //tworzy obiekt, jesli uzytkownik nie istnieje obiekt = null
