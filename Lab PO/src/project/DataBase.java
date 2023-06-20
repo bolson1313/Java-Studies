@@ -59,4 +59,20 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
+    //metoda wypisuje monit budynku
+    public void DBSelectActions(){
+        Connection connect = null;
+        try {
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/buildingdb", "root", "");
+            Statement statement = connect.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while(result.next()){
+                System.out.println("ID: "+result.getInt(1)+" | Action: "+result.getString(2)+" | Date: "+result.getString(3)+" | User ID: "+result.getInt(4));
+            }
+            System.out.println("\n");
+            connect.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

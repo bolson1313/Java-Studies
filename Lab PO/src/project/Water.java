@@ -2,7 +2,7 @@ package project;
 
 public class Water extends Utility{
     double temperature;
-    boolean isCutOff, running;
+    boolean isCutOff =false, running;
 
     public Water() {
         this.temperature = Math.random() * 10 + 20;
@@ -19,35 +19,35 @@ public class Water extends Utility{
 
     public void CutOff(){
         if(isCutOff){
-            System.out.println("Otworzyłeś zawory!\n\n");
+            System.out.println("Otworzyłeś zawory!\n");
             setCutOff(false);
             setRunning(false);
         }else {
-            System.out.println("Zamknąłeś zawory!\n\n");
+            System.out.println("Zamknąłeś zawory!\n");
             setCutOff(true);
         }
     }
     public void RunWater(){
             if(isCutOff){
-                System.out.println("Nie możesz włączyć wody, zawór jest zamknięty!\n\n");
+                System.out.println("Nie możesz włączyć wody, zawór jest zamknięty!\n");
             } else if (running) {
-                System.out.println("Wyłączyeś wodę!\n\n");
+                System.out.println("Wyłączyeś wodę!\n");
                 setRunning(false);
             }else {
-                System.out.println("Włączyłeś wodę!\n\n");
+                System.out.println("Włączyłeś wodę!\n");
                 setRunning(true);
             }
     }
     private String message(){
         if(this.isCutOff){
-            return "Jest odcięta\n\n";
+            return "Jest odcięta\n";
         }else {
-            return "Nie jest odcięta\n\n";
+            return "Nie jest odcięta\n";
         }
     }
 
     @Override
     public String toString() {
-        return "Temperatura wody: "+String.format("%.2f",this.temperature)+" Czy jest odcięta: "+message()+"\n\n";
+        return "Temperatura wody: "+String.format("%.2f",this.temperature)+" Czy jest odcięta: "+message();
     }
 }

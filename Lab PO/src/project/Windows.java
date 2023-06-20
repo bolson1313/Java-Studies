@@ -1,9 +1,8 @@
 package project;
 
 public class Windows implements StatusEntrances{
-    boolean locked,closed;
+    boolean locked=false, closed;
     public Windows() {
-        this.locked = false;
     }
     public boolean isLocked(){
         return locked;
@@ -21,23 +20,22 @@ public class Windows implements StatusEntrances{
     }
     public void Lock(){
         if(locked){
-            System.out.println("Odblokowałeś okna w bydnku!\n\n");
+            System.out.println("Odblokowałeś okna w bydnku!\n");
             setLocked(false);
         }else {
-            System.out.println("Zablokowałes okna w bydnku!\n\n");
+            System.out.println("Zablokowałes okna w bydnku!\n");
             setLocked(true);
             setClosed(true);
         }
     }
-
     public void Open(){
         if(locked){
-            System.out.println("Nie możesz otworzyć okien!\n\n");
+            System.out.println("Nie możesz otworzyć okien!\n");
         } else if (isOpen()) {
-            System.out.println("Otworzyłeś okna w budynku!\n\n");
+            System.out.println("Otworzyłeś okna w budynku!\n");
             setClosed(false);
         } else {
-            System.out.println("Zamknąłeś okna w budynku!\n\n");
+            System.out.println("Zamknąłeś okna w budynku!\n");
             setClosed(true);
         }
     }

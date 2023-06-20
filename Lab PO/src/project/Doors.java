@@ -1,12 +1,9 @@
 package project;
 
 public class Doors implements StatusEntrances{
-    boolean locked, closed;
-
+    boolean locked=false, closed;
     public Doors() {
-        this.locked = false;
     }
-
     public boolean isLocked(){
         return locked;
     }
@@ -21,25 +18,24 @@ public class Doors implements StatusEntrances{
     private void setLocked(boolean locked) {
         this.locked = locked;
     }
-
     public void Lock(){
         if(locked){
-            System.out.println("Odblokowałeś drzwi w bydnku!\n\n");
+            System.out.println("Odblokowałeś drzwi w bydnku!\n");
             setLocked(false);
         }else {
-            System.out.println("Zablokowałes drzwi w bydnku!\n\n");
+            System.out.println("Zablokowałes drzwi w bydnku!\n");
             setLocked(true);
             setClosed(true);
         }
     }
     public void Open(){
         if(locked){
-            System.out.println("Nie możesz otworzyć drzwi!\n\n");
+            System.out.println("Nie możesz otworzyć drzwi!\n");
         } else if (isOpen()) {
-            System.out.println("Otworzyłeś drzwi w budynku!\n\n");
+            System.out.println("Otworzyłeś drzwi w budynku!\n");
             setClosed(false);
         } else {
-            System.out.println("Zamknąłeś drzwi w budynku!\n\n");
+            System.out.println("Zamknąłeś drzwi w budynku!\n");
             setClosed(true);
         }
     }
