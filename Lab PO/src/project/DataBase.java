@@ -4,6 +4,10 @@ import java.sql.*;
 
 public class DataBase {
     private String query;
+    private final String DBPath = "jdbc:mysql://localhost:3306/buildingdb";
+    private final String DBUser = "root";
+    private final String DBPassword = "";
+
     public DataBase(String query) {
         this.query = query;
     }
@@ -18,9 +22,9 @@ public class DataBase {
         Connection connect = null;
         User user=null;
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/buildingdb", "root", "");
+            connect = DriverManager.getConnection(DBPath, DBUser, DBPassword);
             Statement statement = connect.createStatement();
-            ResultSet result = statement.executeQuery(query);
+            ResultSet result = statement.executeQuery(query);  //wykonanie kwerendy selct
             if(result.next()!=false){
                 user = new User(result.getInt(1),result.getString(2), result.getString(3), result.getInt(4), result.getBoolean(5));
             }
@@ -35,7 +39,7 @@ public class DataBase {
     public void AddAction(){
         Connection connect = null;
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/buildingdb", "root", "");
+            connect = DriverManager.getConnection(DBPath, DBUser, DBPassword);
             Statement statement = connect.createStatement();
             statement.executeUpdate(query);
             connect.close();
@@ -47,7 +51,7 @@ public class DataBase {
     public void DBSelectAll(){
         Connection connect = null;
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/buildingdb", "root", "");
+            connect = DriverManager.getConnection(DBPath, DBUser, DBPassword);
             Statement statement = connect.createStatement();
             ResultSet result = statement.executeQuery(query);
             while(result.next()){
@@ -63,7 +67,7 @@ public class DataBase {
     public void DBSelectActions(){
         Connection connect = null;
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/buildingdb", "root", "");
+            connect = DriverManager.getConnection(DBPath, DBUser, DBPassword);
             Statement statement = connect.createStatement();
             ResultSet result = statement.executeQuery(query);
             while(result.next()){

@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Menu {
 
-    public int id, AccesCode;
     private int attempts = 1;
 
     private static final Water water = new Water();
@@ -20,12 +19,13 @@ public class Menu {
 
     public void OpenMenu(){
         //pole do logowania
-        this.id = Inputs.InputInt("Podaj id: ");
-        this.AccesCode = Inputs.InputInt("Podaj kod dostępu: ");
+        //zmienne pomocnicze
+        int id = Inputs.InputInt("Podaj id: ");
+        int accesCode = Inputs.InputInt("Podaj kod dostępu: ");
         //tworzenie obiektów wszystkich klas
         Burglary burglary = new Burglary(0);
-        DataBase dataBase = new DataBase("SELECT id, name, surname, acces_code, authorized FROM users WHERE id="+id+ " AND acces_code="+AccesCode);
-        User user = dataBase.DBCheckUser(id, AccesCode);
+        DataBase dataBase = new DataBase("SELECT id, name, surname, acces_code, authorized FROM users WHERE id="+ id + " AND acces_code="+ accesCode); //tworzy obiekt, jesli uzytkownik nie istnieje obiekt = null
+        User user = dataBase.DBCheckUser(id, accesCode);
         //zmienne dodatkowe
         int option;
 
@@ -38,8 +38,8 @@ public class Menu {
             //jesli uzytkownik istnieje program sprawdzi czy ma on dostep do panelu administratora oraz wyswietli odpowiednie menu
             if(user.isAuthorized()){
                 //wejscie do panelu admina jedynie gdy uzytkownik jest autoryzowany
-                user.setTime(now.format(formater));
-                dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'Entry', '"+user.getTime()+"', "+user.getId()+");");
+                user.setTime(now.format(formater));                                                                                                             //zaktualizowanie czasu logowania uzytkownika
+                dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'Entry', '"+user.getTime()+"', "+user.getId()+");"); //monitorowanie wejscia
                 dataBase.AddAction();
                 while(true){
                     System.out.println("======================| Witaj W panelu administracyjnym "+user.getName()+ "! |======================");
@@ -129,11 +129,11 @@ public class Menu {
                     System.out.println("* Co chcesz zrobić? *");
                     option = Inputs.InputInt("Wpisz opcje: ");
                     switch (option){
-                        case 1:
+                        case 1:                         //opcja sprawdzenia temperatury
                             System.out.println(water);
                             System.out.println(air);
                             break;
-                        case 2:
+                        case 2:                         //opcja otwarcia okien jeśli drzwi są odblokowane to program zamknie je lub otworzy, zmiana zostanie wprowadzona do bazy danych w tabeli actions
                             windows.Open();
                             if(!windows.isLocked()){
                                 if(windows.isOpen()){
@@ -143,10 +143,9 @@ public class Menu {
                                     dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WinOpn', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }
-
                             }
                             break;
-                        case 3:
+                        case 3:                          //opcja otwarcia drzwi jeśli drzwi są odblokowane to program zamknie je lub otworzy, zmiana zostanie wprowadzona do bazy danych w tabeli actions
                             doors.Open();
                             if(!doors.isLocked()){
                                 if(doors.isOpen()){
@@ -158,7 +157,7 @@ public class Menu {
                                 }
                             }
                             break;
-                        case 4:
+                        case 4:                          //opcja włączenia świateł jeśli jest prąd w budynku jest włączony, zmiana zostanie wprowadzona do bazy danych w tabeli actions
                             electricity.Turn();
                             if(!electricity.isCutOff()){
                                 if(electricity.lights){
@@ -170,7 +169,7 @@ public class Menu {
                                 }
                             }
                             break;
-                        case 5:
+                        case 5:                           //opcja włączenia wody jeśli jest zawór jest otwarty, zmiana zostanie wprowadzona do bazy danych w tabeli actions
                             water.RunWater();
                             if(!water.isCutOff){
                                 if(water.running){
@@ -183,21 +182,30 @@ public class Menu {
 
                             }
                             break;
-                        case 6:
-                            ticket.setMessage(Inputs.InputString("Opisz krótko sprawę: "));
-                            now = LocalDateTime.now();
-                            user.setTime(now.format(formater));
-                            dataBase.setQuery("INSERT INTO `tickets` (`id`, `user_id`, `message`, `date`) VALUES (NULL, '"+user.getId()+"', '"+ticket.getMessage()+"', '"+user.getTime()+"')");
-                            dataBase.AddAction();
-                            System.out.println("Sprawa została zgłoszona!\n");
+                        case 6:                             //po wybraniu tej opcji wyswietla sie pole tekstowe w ktorym wpisujemy problem, problem zostaje wyslany do bazy danych w tabelce tickets, moze je wyswietlac administrator
+                            String ticketmsg = Inputs.InputString("Opisz krótko sprawę(45 znaków): ");
+                            while(true){
+                                if(ticketmsg.length()<=45){
+                                    ticket.setMessage(ticketmsg);
+                                    now = LocalDateTime.now();
+                                    user.setTime(now.format(formater));
+                                    dataBase.setQuery("INSERT INTO `tickets` (`id`, `user_id`, `message`, `date`) VALUES (NULL, '"+user.getId()+"', '"+ticket.getMessage()+"', '"+user.getTime()+"')");
+                                    dataBase.AddAction();
+                                    System.out.println("Sprawa została zgłoszona!\n");
+                                    break;
+                                }
+                                else {
+                                    ticketmsg = Inputs.InputString("Opisz krótko sprawę(45 znaków): ");
+                                }
+                            }
                             break;
-                        case 7:
+                        case 7:                             //wyjscie z budynku, powrot do pola logowania, zapisuje w bazie danych uzytkownika i godzine w ktorej wyszedl
                             user.setTime(now.format(formater));
                             dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'Exit', '"+user.getTime()+"', "+user.getId()+");");
                             dataBase.AddAction();
                             OpenMenu();
                             break;
-                        case 8:
+                        case 8:                             //wyjscie z programu po potwierdzeniu, zapisuje w bazie danych uzytkownika i godzine w ktorej wyszedl
                             String conf;
                             conf = Inputs.InputString("Czy napewno chcesz wyjść? (Y/N): ");
                             if(conf.equals("Y") || conf.equals("y")){
