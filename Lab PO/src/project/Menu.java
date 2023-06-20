@@ -52,8 +52,9 @@ public class Menu {
                             "5. Włącz/Wyłącz światła w budynku\n" +
                             "6. Odetnij wodę w budynku\n" +
                             "7. Sprawdź sprawy zglaszane przez lokatrowów\n" +
-                            "8. Wyjdź z budynku\n" +
-                            "9. Wyłącz program");
+                            "8. Sprwadź liste akcji\n" +
+                            "9. Wyjdź z budynku\n" +
+                            "10. Wyłącz program");
                     System.out.println("==================================================================================");
                     System.out.println("* Co chcesz zrobić? *");
                     option = Inputs.InputInt("Wpisz opcje: ");
@@ -82,12 +83,17 @@ public class Menu {
                             dataBase.DBSelectAll();
                             break;
                         case 8:
+                            dataBase.setQuery("SELECT * FROM actions");
+                            System.out.println("Co sie działo w budynku: ");
+                            dataBase.DBSelectAll();
+                            break;
+                        case 9:
                             user.setTime(now.format(formater));
                             dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'wyjscie', '"+user.getTime()+"', "+user.getId()+");");
                             dataBase.AddAction();
                             OpenMenu();
                             break;
-                        case 9:
+                        case 10:
                             String conf;
                             conf = Inputs.InputString("Czy napewno chcesz wyjść? (Y/N): ");
                             if(conf.equals("Y") || conf.equals("y")){

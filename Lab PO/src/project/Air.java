@@ -8,6 +8,6 @@ public class Air extends Utility{
     }
     @Override
     public String toString() {
-        return "Temperatura powietrza: "+String.format("%.2f",this.temperature);
+        return "Temperatura powietrza: "+String.format("%.2f",this.temperature)+"\n";
     }
 }

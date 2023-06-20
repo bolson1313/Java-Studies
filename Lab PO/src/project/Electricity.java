@@ -18,22 +18,22 @@ public class Electricity extends Utility{
 
         public void CutOff(){
                 if(isCutOff){
-                        System.out.println("Wyłączyłeś prąd w budynku!\n");
+                        System.out.println("Wyłączyłeś prąd w budynku!\n\n");
                         setCutOff(false);
                         setLights(false);
                 }else {
-                        System.out.println("Włączyłeś prąd w budynku!\n");
+                        System.out.println("Włączyłeś prąd w budynku!\n\n");
                         setCutOff(true);
                 }
         }
         public void Turn(){
                 if(isCutOff){
-                        System.out.println("Nie możesz włączyć światła, sieć jest wyłączona!");
+                        System.out.println("Nie możesz włączyć światła, sieć jest wyłączona!\n\n");
                 } else if (lights) {
-                        System.out.println("Wyłączyeś światło!");
+                        System.out.println("Wyłączyeś światło!\n\n");
                         setLights(false);
                 }else {
-                        System.out.println("Włączyłeś światło!");
+                        System.out.println("Włączyłeś światło!\n\n");
                         setLights(true);
                 }
         }

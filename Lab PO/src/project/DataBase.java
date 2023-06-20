@@ -53,7 +53,7 @@ public class DataBase {
             while(result.next()){
                 System.out.println("ID: "+result.getInt(1)+" | UserID: "+result.getInt(2)+ " | Message: "+result.getString(3)+" | Time: "+result.getString(4));
             }
-            System.out.println();
+            System.out.println("\n");
             connect.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);

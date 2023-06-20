@@ -24,21 +24,22 @@ public class Doors implements StatusEntrances{
 
     public void Lock(){
         if(locked){
-            System.out.println("Odblokowałeś drzwi w bydnku!");
+            System.out.println("Odblokowałeś drzwi w bydnku!\n\n");
             setLocked(false);
         }else {
-            System.out.println("Zablokowałes drzwi w bydnku!");
+            System.out.println("Zablokowałes drzwi w bydnku!\n\n");
             setLocked(true);
+            setClosed(true);
         }
     }
     public void Open(){
         if(locked){
-            System.out.println("Nie możesz otworzyć drzwi!");
+            System.out.println("Nie możesz otworzyć drzwi!\n\n");
         } else if (isOpen()) {
-            System.out.println("Otworzyłeś drzwi w budynku!");
+            System.out.println("Otworzyłeś drzwi w budynku!\n\n");
             setClosed(false);
         } else {
-            System.out.println("Zamknąłeś drzwi w budynku!");
+            System.out.println("Zamknąłeś drzwi w budynku!\n\n");
             setClosed(true);
         }
     }

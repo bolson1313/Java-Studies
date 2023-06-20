@@ -19,35 +19,35 @@ public class Water extends Utility{
 
     public void CutOff(){
         if(isCutOff){
-            System.out.println("Otworzyłeś zawory!\n");
+            System.out.println("Otworzyłeś zawory!\n\n");
             setCutOff(false);
             setRunning(false);
         }else {
-            System.out.println("Zamknąłeś zawory!\n");
+            System.out.println("Zamknąłeś zawory!\n\n");
             setCutOff(true);
         }
     }
     public void RunWater(){
             if(isCutOff){
-                System.out.println("Nie możesz włączyć wody, zawór jest zamknięty!");
+                System.out.println("Nie możesz włączyć wody, zawór jest zamknięty!\n\n");
             } else if (running) {
-                System.out.println("Wyłączyeś wodę!");
+                System.out.println("Wyłączyeś wodę!\n\n");
                 setRunning(false);
             }else {
-                System.out.println("Włączyłeś wodę!");
+                System.out.println("Włączyłeś wodę!\n\n");
                 setRunning(true);
             }
     }
     private String message(){
         if(this.isCutOff){
-            return "Jest odcięta\n";
+            return "Jest odcięta\n\n";
         }else {
-            return "Nie jest odcięta\n";
+            return "Nie jest odcięta\n\n";
         }
     }
 
     @Override
     public String toString() {
-        return "Temperatura wody: "+String.format("%.2f",this.temperature)+" Czy jest odcięta: "+message()+"\n";
+        return "Temperatura wody: "+String.format("%.2f",this.temperature)+" Czy jest odcięta: "+message()+"\n\n";
     }
 }

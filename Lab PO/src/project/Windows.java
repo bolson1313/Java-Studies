@@ -21,22 +21,23 @@ public class Windows implements StatusEntrances{
     }
     public void Lock(){
         if(locked){
-            System.out.println("Odblokowałeś okna w bydnku!");
+            System.out.println("Odblokowałeś okna w bydnku!\n\n");
             setLocked(false);
         }else {
-            System.out.println("Zablokowałes okna w bydnku!");
+            System.out.println("Zablokowałes okna w bydnku!\n\n");
             setLocked(true);
+            setClosed(true);
         }
     }
 
     public void Open(){
         if(locked){
-            System.out.println("Nie możesz otworzyć okien!");
+            System.out.println("Nie możesz otworzyć okien!\n\n");
         } else if (isOpen()) {
-            System.out.println("Otworzyłeś okna w budynku!");
+            System.out.println("Otworzyłeś okna w budynku!\n\n");
             setClosed(false);
         } else {
-            System.out.println("Zamknąłeś okna w budynku!");
+            System.out.println("Zamknąłeś okna w budynku!\n\n");
             setClosed(true);
         }
     }
