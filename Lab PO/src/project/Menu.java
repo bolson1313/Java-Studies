@@ -118,10 +118,10 @@ public class Menu {
                     System.out.println("=================================| Witaj "+user.getName()+ "! |=================================");
                     System.out.println("\t\t\t\t\tWszedłeś do budynku o "+now.format(formater));
                     System.out.println("1. Sprawdź temperaturę powietrza oraz wody\n" +
-                            "2. Otwórz okna\n" +
-                            "3. Otwóz drzwi\n" +
-                            "4. Włącz światło\n" +
-                            "5. Otwórz wodę\n" +
+                            "2. Otwórz/Zamknij okna\n" +
+                            "3. Otwóz/Zamknij drzwi\n" +
+                            "4. Włącz/Wyłącz światło\n" +
+                            "5. Otwórz/Zamknij kran\n" +
                             "6. Zgłoś sprawe do administratora budynku\n" +
                             "7. Wyjdź z budynku\n" +
                             "8. Wyłącz program");
@@ -137,10 +137,10 @@ public class Menu {
                             windows.Open();
                             if(!windows.isLocked()){
                                 if(windows.isOpen()){
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WinClsd', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WinOpn', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }else {
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WinOpn', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WinClsd', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }
                             }
@@ -149,10 +149,10 @@ public class Menu {
                             doors.Open();
                             if(!doors.isLocked()){
                                 if(doors.isOpen()){
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'DrsClsd', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'DrsOpn', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }else {
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'DrsOpn', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'DrsClsd', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }
                             }
@@ -161,10 +161,10 @@ public class Menu {
                             electricity.Turn();
                             if(!electricity.isCutOff()){
                                 if(electricity.lights){
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'LhgtOff', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'LhgtOn', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }else {
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'LghtOn', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'LghtOff', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }
                             }
@@ -173,10 +173,10 @@ public class Menu {
                             water.RunWater();
                             if(!water.isCutOff){
                                 if(water.running){
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WtrOff', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WtrOn', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }else {
-                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WtfOn', '"+user.getTime()+"', "+user.getId()+");");
+                                    dataBase.setQuery("INSERT INTO `actions` (`id`, `action`, `date`, `user_id`) VALUES (NULL, 'WtfOff', '"+user.getTime()+"', "+user.getId()+");");
                                     dataBase.AddAction();
                                 }
 

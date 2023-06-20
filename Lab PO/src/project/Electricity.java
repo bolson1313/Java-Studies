@@ -24,11 +24,11 @@ public class Electricity extends Utility{
 
         public void CutOff(){
                 if(isCutOff){
-                        System.out.println("Wyłączyłeś prąd w budynku!\n");
+                        System.out.println("Włączyłeś prąd w budynku!\n");
                         setCutOff(false);
                         setLights(false);
                 }else {
-                        System.out.println("Włączyłeś prąd w budynku!\n");
+                        System.out.println("Wyłączyłeś prąd w budynku!\n");
                         setCutOff(true);
                 }
         }
