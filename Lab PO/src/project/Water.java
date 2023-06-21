@@ -40,9 +40,9 @@ public class Water extends Utility{
     }
     private String message(){
         if(this.isCutOff){
-            return "Jest odcięta\n";
+            return "Jest odcięta";
         }else {
-            return "Nie jest odcięta\n";
+            return "Nie jest odcięta";
         }
     }
 

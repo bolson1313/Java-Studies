@@ -2,6 +2,7 @@ package project;
 
 public class Ticket {
     private String message;
+    private int id;
 
     public Ticket() {
     }

@@ -43,4 +43,17 @@ public class Electricity extends Utility{
                         setLights(true);
                 }
         }
+
+        private String message(){
+                if(this.isCutOff()){
+                        return "Wyłączony";
+                }else {
+                        return "Włączony";
+                }
+        }
+
+        @Override
+        public String toString() {
+                return "Główny bezpiecznik "+message();
+        }
 }

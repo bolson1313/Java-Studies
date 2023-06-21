@@ -25,7 +25,7 @@ public class DataBase {
             connect = DriverManager.getConnection(DBPath, DBUser, DBPassword);
             Statement statement = connect.createStatement();
             ResultSet result = statement.executeQuery(query);  //wykonanie kwerendy selct
-            if(result.next()!=false){
+            if(result.next()){
                 user = new User(result.getInt(1),result.getString(2), result.getString(3), result.getInt(4), result.getBoolean(5));
             }
             connect.close();
@@ -63,6 +63,21 @@ public class DataBase {
             throw new RuntimeException(e);
         }
     }
+    public boolean DBCheckIfExists(){
+        Connection connect = null;
+        boolean exists;
+        try {
+            connect = DriverManager.getConnection(DBPath, DBUser, DBPassword);
+            Statement statement = connect.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            exists =  result.next();
+            connect.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return exists;
+    }
+
     //metoda wypisuje monit budynku
     public void DBSelectActions(){
         Connection connect = null;

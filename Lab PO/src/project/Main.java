@@ -1,9 +1,9 @@
 package project;
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        //utworzenie obiektu klasy menu, aby w Main był porządek - w klasie menu znajduje się wiekszość rzeczy
-        Menu menu = new Menu();
+        //utworzenie obiektu klasy execution, aby w Main był porządek - w klasie menu znajduje się wiekszość rzeczy
+        Execution menu = new Execution();
         menu.OpenMenu();
     }
 }

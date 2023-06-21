@@ -39,4 +39,16 @@ public class Windows implements StatusEntrances{
             setClosed(true);
         }
     }
+    private String message(){
+        if(this.isLocked()){
+            return "Zablokowane";
+        }else {
+            return "Nie zablkowowane";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Okna są "+message();
+    }
 }
