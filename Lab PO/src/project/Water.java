@@ -48,6 +48,6 @@ public class Water extends Utility{
 
     @Override
     public String toString() {
-        return "Temperatura wody: "+String.format("%.2f",this.temperature)+" Czy jest odcięta: "+message();
+        return "Temperatura wody: "+String.format("%.2f",this.temperature)+"\nWoda "+message();
     }
 }

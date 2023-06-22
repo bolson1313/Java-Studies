@@ -1,7 +1,8 @@
 package project;
 
 public class Electricity extends Utility{
-        boolean isCutOff = false, lights = true;
+        boolean isCutOff = false;
+        boolean lights = true;
 
         public Electricity() {
         }
