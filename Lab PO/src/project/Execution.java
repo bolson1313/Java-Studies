@@ -144,7 +144,6 @@ public class Execution {
                                         //czytanie imienia
                                         String tmpName = null;
                                         tmpName = Inputs.InputString("Podaj imię: ");
-                                        System.out.println("Imie: "+tmpName);
                                         while(tmpName.isEmpty()){
                                             tmpName = Inputs.InputString("Błąd! Podaj imie ponownie: ");
                                         }
@@ -183,11 +182,11 @@ public class Execution {
                                         }
                                         if (tmpconf.equals("T") || tmpconf.equals("t")) {
                                             if(confirm){
-                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurename + "', '" + accesCode + "', '1')");
+                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurename + "', '" + tmpAccesCode + "', '1')");
                                                 dataBase.AddAction();
                                                 System.out.println("Autoryzowany Użytkownik dodany do bazy!");
                                             } else {
-                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurename + "', '" + accesCode + "', '0')");
+                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurename + "', '" + tmpAccesCode + "', '0')");
                                                 dataBase.AddAction();
                                                 System.out.println("Nie Autoryzowany Użytkownik dodany do bazy!");
                                             }

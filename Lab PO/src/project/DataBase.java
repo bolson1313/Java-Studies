@@ -86,7 +86,7 @@ public class DataBase {
             Statement statement = connect.createStatement();
             ResultSet result = statement.executeQuery(query);
             while(result.next()){
-                System.out.println("ID: "+result.getInt(1)+" | Action: "+result.getString(2)+" | Date: "+result.getString(3)+" | User ID: "+result.getInt(4));
+                System.out.println("ID: "+result.getInt(1)+" | Action: "+result.getString(2)+" | Date: "+result.getString(3)+" | User PIN: "+result.getInt(4));
             }
             System.out.println("\n");
             connect.close();
