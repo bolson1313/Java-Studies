@@ -141,50 +141,65 @@ public class Execution {
                                     if (tmpoption.equals("1")) {
                                         int tmp = 0;
                                         System.out.println("Podaj dane użtykownika do dodania: ");
-                                        String tmpName = Inputs.InputString("Podaj imię: ");
-                                        String tmpSurname = Inputs.InputString("Podaj nazwisko: ");
-                                        String tmpaccesCode = Inputs.InputString("Podaj kod dostępu max.4 cyfry: ");
-                                        String ath = Inputs.InputString("Podaj czy ma być autoryzowany T/N: ");
-                                        try {
-                                            if (Integer.parseInt(tmpaccesCode) <= 9999 && Integer.parseInt(tmpaccesCode) > 0) {
-                                                tmp++;
-                                            } else {
-                                                System.out.println("Błędny kod dostępu podaj ponownie.");
+                                        //czytanie imienia
+                                        String tmpName = null;
+                                        tmpName = Inputs.InputString("Podaj imię: ");
+                                        System.out.println("Imie: "+tmpName);
+                                        while(tmpName.isEmpty()){
+                                            tmpName = Inputs.InputString("Błąd! Podaj imie ponownie: ");
+                                        }
+                                        //czytanie nazwiska
+                                        String tmpSurename = Inputs.InputString("Podaj nazwisko: ");
+                                        while(tmpSurename.isEmpty()){
+                                            tmpSurename = Inputs.InputString("Błąd! Podaj nazwisko pownownie: ");
+                                        }
+                                        //czytanie i sprawdzenie kodu
+                                        String tmpAccesCode;
+                                        while(true){
+                                            try{
+                                                tmpAccesCode = Inputs.InputString("Podaj kod dostępu (4 cyfry): ");
+                                                tmp = Integer.parseInt(tmpAccesCode);
+                                                if(tmpAccesCode.length()==4){
+                                                    break;
+                                                }
+                                            } catch (Exception e){
+                                                System.out.print("Błąd! ");
                                             }
-                                        } catch (NumberFormatException nfe){
-                                            System.out.println("Podano błędne znaki w kodzie!");
                                         }
-                                        if (ath.equals("t") || ath.equals("T")) {
-                                            tmp++;
+
+                                        //czy autoryzowany
+                                        String tmpIsAuthorized = Inputs.InputString("Podaj czy użytkownik ma być autoryzowany(T/N): ");
+                                        while(tmpIsAuthorized.isEmpty()){
+                                            tmpIsAuthorized = Inputs.InputString("Błąd! Podaj czy użytkownik ma być autoryzowany(T/N): ");
                                         }
-                                        if (tmpName == null || tmpSurname == null) {
-                                            System.out.println("Błędne imie lub nazwisko, podaj ponownie.");
-                                        } else {
-                                            tmp++;
+                                        boolean confirm = false;
+                                        if(tmpIsAuthorized.equals("T") || tmpIsAuthorized.equals("t")){
+                                            confirm = true;
                                         }
-                                        if (tmp == 2) {
-                                            String tmpconf = Inputs.InputString("Czy napewno chcesz dodać? T/N: ");
-                                            if (tmpconf.equals("T") || tmpconf.equals("t")) {
-                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurname + "', '" + accesCode + "', '0')");
-                                                dataBase.AddAction();
-                                                System.out.println("Nie Autoryzowany Użytkownik dodany do bazy!");
-                                                break;
-                                            } else {
-                                                System.out.println("Użytkownik nie zostal dodany!");
-                                                break;
-                                            }
-                                        } else if (tmp == 3) {
-                                            String tmpconf = Inputs.InputString("Czy napewno chcesz dodać T/N: ");
-                                            if (tmpconf.equals("T") || tmpconf.equals("t")) {
-                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurname + "', '" + accesCode + "', '1')");
+
+                                        String tmpconf = Inputs.InputString("Czy napewno chcesz dodać? T/N: ");
+                                        while(tmpconf.isEmpty()){
+                                            tmpconf = Inputs.InputString("Błąd! Podaj czy użytkownik ma zostać dodany(T/N): ");
+                                        }
+                                        if (tmpconf.equals("T") || tmpconf.equals("t")) {
+                                            if(confirm){
+                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurename + "', '" + accesCode + "', '1')");
                                                 dataBase.AddAction();
                                                 System.out.println("Autoryzowany Użytkownik dodany do bazy!");
-                                                break;
                                             } else {
-                                                System.out.println("Użytkownik nie zostal dodany!");
-                                                break;
+                                                dataBase.setQuery("INSERT INTO `users` (`id`, `name`, `surname`, `acces_code`, `authorized`) VALUES (NULL, '" + tmpName + "', '" + tmpSurename + "', '" + accesCode + "', '0')");
+                                                dataBase.AddAction();
+                                                System.out.println("Nie Autoryzowany Użytkownik dodany do bazy!");
                                             }
+                                            break;
+                                        } else {
+                                            System.out.println("Użytkownik nie zostal dodany!");
+                                            break;
                                         }
+
+
+
+
                                     } else if (tmpoption.equals("2")) {
                                         dataBase.setQuery("SELECT * FROM users");
                                         System.out.println("Wszyscy użytkownicy: ");
