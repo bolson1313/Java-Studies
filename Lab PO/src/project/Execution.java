@@ -195,10 +195,6 @@ public class Execution {
                                             System.out.println("Użytkownik nie zostal dodany!");
                                             break;
                                         }
-
-
-
-
                                     } else if (tmpoption.equals("2")) {
                                         dataBase.setQuery("SELECT * FROM users");
                                         System.out.println("Wszyscy użytkownicy: ");

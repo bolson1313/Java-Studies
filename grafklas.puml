@@ -1,0 +1,119 @@
+@startuml
+class project.Burglary {
+- int Acces_Denied_Counter
++ void setAcces_Denied_Counter(int)
++ int getAcces_Denied_Counter()
+}
+class project.Inputs {
++ {static} int InputInt(String)
++ {static} String InputString(String)
+}
+class project.DataBase {
+- String query
+- String DBPath
+- String DBUser
+- String DBPassword
++ void setQuery(String)
++ User DBCheckUser(int,int)
++ void AddAction()
++ void DBSelectAll()
++ boolean DBCheckIfExists()
++ void DBSelectActions()
+}
+class project.Windows {
+~ boolean locked
++ boolean isLocked()
++ boolean isOpen()
+- void setLocked(boolean)
+- void setClosed(boolean)
++ void Lock()
++ void Open()
+- String message()
++ String toString()
+}
+abstract class project.Utility {
+~ boolean isCutOff
+~ double temperature
+}
+class project.Electricity {
+~ boolean isCutOff
+~ boolean lights
++ boolean isCutOff()
++ boolean isLights()
+- void setCutOff(boolean)
+- void setLights(boolean)
++ void CutOff()
++ void Turn()
+- String message()
++ String toString()
+}
+class project.Water {
+~ double temperature
+~ boolean isCutOff
+- void setCutOff(boolean)
+- void setRunning(boolean)
++ void CutOff()
++ void RunWater()
+- String message()
++ String toString()
+}
+class project.Doors {
+~ boolean locked
++ boolean isLocked()
++ boolean isOpen()
+- void setClosed(boolean)
+- void setLocked(boolean)
++ void Lock()
++ void Open()
+- String message()
++ String toString()
+}
+interface project.StatusEntrances {
+~ boolean isLocked()
+~ boolean isOpen()
+~ void Lock()
+~ void Open()
+}
+class project.Ticket {
+- String message
+- int id
++ void setMessage(String)
++ String getMessage()
+}
+class project.Execution {
+- int attempts
+- {static} Water water
+- {static} Air air
+- {static} Doors doors
+- {static} Windows windows
+- {static} Electricity electricity
+- {static} Ticket ticket
++ void OpenMenu()
+}
+class project.Air {
+~ double temperature
++ String toString()
+}
+class project.Main {
++ {static} void main(String[])
+}
+class project.User {
+~ String name
+~ int id
+~ boolean authorized
+- String time
++ void setTime(String)
++ String getTime()
++ String getName()
++ String getSurname()
++ int getId()
++ boolean isAuthorized()
+}
+
+
+project.StatusEntrances <|.. project.Windows
+project.Utility <|-- project.Electricity
+project.Utility <|-- project.Water
+project.StatusEntrances <|.. project.Doors
+project.Utility <|-- project.Air
+@enduml
