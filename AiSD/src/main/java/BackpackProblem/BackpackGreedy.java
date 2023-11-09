@@ -1,13 +1,41 @@
 package BackpackProblem;
 
 public class BackpackGreedy {
-    static int Vbp = 10;
                     //0 1 2 3 4 5
     static int[] V = {6,2,3,2,3,1};
     static int[] W = {6,4,5,7,10,2};
-    static double[][] result = new double[2][6];
 
-    static void Value() {
+    //1 sorted max worth
+    static int[] max(){
+        int[] max = {0,0};
+        for(int i = 0; i < W.length; i++){
+            if(W[i] > max[1]){
+                max[1] = W[i];
+                max[0] = i;
+            }
+        }
+        return max;
+    }
+    static void backpack1(){
+        int Vbp = 10;
+        for(int i = 0; i < W.length; i++){
+            System.out.println("id: "+max()[0]+ ", worth: "+max()[1]+ ", volume: "+V[max()[0]]);
+            if(Vbp - V[max()[0]] >= 0){
+                Vbp = Vbp - V[max()[0]];
+                System.out.println("id: "+max()[0]+", free space: "+Vbp);
+            }
+            W[max()[0]] =- max()[1];
+        }
+    }
+
+    // 2 min volume sort
+
+
+
+    // 3 volume / value sorted
+    static void backpack3() {
+        int Vbp = 10;
+        double[][] result = new double[2][6];
         for(int i = 0; i < V.length; i++){
             result[0][i] = i;
             result[1][i] = (double) V[i] / W[i];
@@ -45,8 +73,10 @@ public class BackpackGreedy {
 
     }
 
+
+
     public static void main(String[] args) {
-        Value();
+        backpack1();
     }
 
 }
