@@ -19,7 +19,7 @@ public class BackpackGreedy {
     static void backpack1(){
         int Vbp = 10;
         for(int i = 0; i < W.length; i++){
-            System.out.println("id: "+max()[0]+ ", worth: "+max()[1]+ ", volume: "+V[max()[0]]);
+            //System.out.println("id: "+max()[0]+ ", worth: "+max()[1]+ ", volume: "+V[max()[0]]);
             if(Vbp - V[max()[0]] >= 0){
                 Vbp = Vbp - V[max()[0]];
                 System.out.println("id: "+max()[0]+", free space: "+Vbp);
