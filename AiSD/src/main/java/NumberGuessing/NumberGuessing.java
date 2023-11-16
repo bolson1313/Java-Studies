@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class NumberGuessing {
     static Random random = new Random();
-    static int RandomNumber = random.nextInt(0,100);
+    static int RandomNumber = random.nextInt(0,101);
 
     public static int Guessing(int left, int right, int number){
         int guess = (left+right)/2;
