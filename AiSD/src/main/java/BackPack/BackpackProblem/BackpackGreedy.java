@@ -63,6 +63,7 @@ public class BackpackGreedy {
             System.out.println( "id: " + result[0][j] + " value: " + result[1][j]);
         }
 
+        System.out.println("=============================");
         for(int i = 0; i < V.length; i++){
                 if(Vbp - V [(int) result[0][i]]>= 0) {
                     Vbp = Vbp -  V[(int) result[0][i]];
@@ -76,7 +77,7 @@ public class BackpackGreedy {
 
 
     public static void main(String[] args) {
-        backpack1();
+        backpack3();
     }
 
 }
