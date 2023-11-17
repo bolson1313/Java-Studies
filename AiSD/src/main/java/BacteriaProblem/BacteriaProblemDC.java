@@ -19,8 +19,7 @@ public class BacteriaProblemDC {
             return 1;
         }
         time++;
-        n = n + n*2;
-        return bacteria_counter(n);
+        return bacteria_counter(n*2);
     }
     public static void main(String[] args) {
         bacteria_counter(1);
