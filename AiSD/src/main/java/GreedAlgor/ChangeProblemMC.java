@@ -1,7 +1,7 @@
 package GreedAlgor;
 
 import java.io.*;
-class ResztaZachlanny
+class ChangeProblemMC
 {
     public static void main(String[] args) throws IOException
     {
