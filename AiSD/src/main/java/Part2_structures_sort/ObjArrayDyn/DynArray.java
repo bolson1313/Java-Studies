@@ -62,17 +62,12 @@ public class DynArray {
         return -1; //nie znaleziono elementu w tablicy
     }
 
-    //metoda to wypisywania calej tablicy
+    //metoda do wypisywania elementow calej tablicy za pomoca petli
     public void print(){
-        System.out.println(Arrays.toString(mainArray));
-    }
-
-
-    //druga metoda do wypisywania elementow calej tablicy za pomoca petli
-    public void print1(){
         for (int i = 0; i < nElem; i++){
             System.out.print(get(i).toString()+"  ");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -87,6 +82,10 @@ public class DynArray {
         array.add(8);
         array.add(9);
         array.add(11);
-        array.print1();
+        array.print();
+        System.out.println(array.find(9));
+        array.remove(3);
+        array.print();
+        System.out.println(array.size());
     }
 }

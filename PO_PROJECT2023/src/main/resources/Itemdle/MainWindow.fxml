@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="mainPane" fx:id="menuScene" prefHeight="700.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Itemdle.MainWindowController">
+   <children>
+      <ImageView id="mainSeceneImage" fitHeight="166.0" fitWidth="996.0" layoutX="142.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/fontbolt.png" />
+         </image>
+      </ImageView>
+      <Button id="startButton" layoutX="568.0" layoutY="322.0" mnemonicParsing="false" onAction="#switchToStart" text="START" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana Bold" size="29.0" />
+         </font>
+      </Button>
+      <Button id="scoresButton" layoutX="553.0" layoutY="433.0" mnemonicParsing="false" onAction="#switchToStats" text="Check your scores">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button id="exitButton" layoutX="610.0" layoutY="586.0" mnemonicParsing="false" onAction="#exitButton" text="EXIT">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="563.0" layoutY="535.0" mnemonicParsing="false" onAction="#stiwtchToAbout" text="About the game">
+         <font>
+            <Font name="Verdana Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
