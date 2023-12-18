@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,13 +20,11 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
-public class GameWindowController{
+public class GameWindowController implements Initializable{
 
     private Stage stage;
     @FXML
@@ -54,12 +51,18 @@ public class GameWindowController{
         System.exit(1);
     }
 
+    @FXML
+    void clearButton(ActionEvent event) {
+        paneInScroll.getChildren().clear();
+    }
+
 
 
 
     @FXML
     void submitButton(ActionEvent event) {
         addingHbox(textInput.getText());
+
     }
     @FXML
     void textSubmitByClick(ActionEvent event) {
@@ -67,11 +70,11 @@ public class GameWindowController{
     }
 
 // nie dziala  :c
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        String[] items = {"apple", "banana", "car"};
-//        TextFields.bindAutoCompletion(textInput, items);
-//    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        String[] items = {"apple", "banana", "car"};
+        TextFields.bindAutoCompletion(textInput, items);
+    }
 
     private void addingHbox(String itemname){
         //hbox with item stats
@@ -180,6 +183,7 @@ public class GameWindowController{
         paneInScroll.setPrefHeight(paneInScroll.getHeight()+100);
         paneInScroll.getChildren().addAll(hbox);
     }
+
 
 
 }
