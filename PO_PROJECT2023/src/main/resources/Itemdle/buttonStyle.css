@@ -1,0 +1,42 @@
+#startButton {
+    -fx-font-size: 32px;
+}
+
+#smallbutton {
+    -fx-font-size: 22px;
+}
+.button {
+    -fx-text-decoration: none;
+    -fx-text-transform: uppercase;
+    -fx-font-family: Montserrat-Medium;
+    -fx-font-weight: bold;
+
+    -fx-padding: 10 20;
+    -fx-line-spacing: 3em;
+    -fx-cursor: hand; /* Opcjonalne: Pokaż kursor ręki po najechaniu */
+
+    -fx-border: 2px, solid, #00c7ec;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+
+    -fx-background-color: #1E587A;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); /* Cień */
+
+    -fx-transition: all, 10.0s, ease-in-out;
+}
+
+.button:hover {
+    -fx-background-color: #194965;
+    -fx-border-color: transparent;
+    -fx-box-shadow: 0, 0, 20px, 0, rgba(255, 255, 255, 0.3);
+    -fx-scale-y: 0.95;
+    -fx-scale-x: 0.95;
+}
+
+.button:pressed {
+    -fx-background-color: #005671;
+    -fx-box-shadow: 0, 0, 10px, 0, rgba(255, 255, 255, 0.1);
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}

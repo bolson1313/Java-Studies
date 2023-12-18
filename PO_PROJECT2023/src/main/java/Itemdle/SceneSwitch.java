@@ -17,7 +17,6 @@ public class SceneSwitch {
     private Parent root;
 
     public SceneSwitch(AnchorPane actualStage, String fxmlPath) throws IOException {
-        System.out.println("about");
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
         stage = (Stage)actualStage.getScene().getWindow();
         scene = new Scene(root);

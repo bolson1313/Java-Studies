@@ -14,17 +14,19 @@ public class MainWindow extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GameWindow.fxml")));
+        //tu dla testu otwieram gamewindow.fxml, proba naprawy bledu
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main" +
+                "Window.fxml")));
         Scene mainScene = new Scene(root, Color.LIGHTBLUE);
 
         //style
-        mainScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        //mainScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
 
 
 
         //title and window icon
         stage.setTitle("League of Legends - Itemdle");
-        Image Icon = new Image("windowicon.png");
+        Image Icon = new Image("file:src/main/resources/images/windowicon.png");
         stage.getIcons().add(Icon);
 
         //window size

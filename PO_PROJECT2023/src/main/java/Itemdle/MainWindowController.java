@@ -21,19 +21,19 @@ public class MainWindowController {
 
     @FXML
     void stiwtchToAbout(ActionEvent event) throws IOException {
-        System.out.println("about window");
+        System.out.println("aboutWindow");
         new SceneSwitch(menuScene, "AboutWindow.fxml");
     }
 
     @FXML
     void switchToStart(ActionEvent event) throws IOException {
-        System.out.println("start");
+        System.out.println("gameWindow");
         new SceneSwitch(menuScene, "GameWindow.fxml");
     }
 
     @FXML
     void switchToStats(ActionEvent event) {
-        System.out.println("stats");
+        System.out.println("statsWindow");
     } // tutaj jakas baza danych w wszystkimi wynikami :)5
 
 }
