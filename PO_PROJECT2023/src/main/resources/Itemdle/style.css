@@ -12,4 +12,21 @@
 
 #gameLabel {
     -fx-text-fill: #E6D891;
+    -fx-underline: true;
+}
+
+
+
+#hboxScroll, #flowPane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+#hboxScroll {
+    -fx-background-color: black;
+}
+
+#scrollPane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
 }

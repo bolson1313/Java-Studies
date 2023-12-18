@@ -14,7 +14,7 @@ public class MainWindow extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainWindow.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GameWindow.fxml")));
         Scene mainScene = new Scene(root, Color.LIGHTBLUE);
 
         //style
