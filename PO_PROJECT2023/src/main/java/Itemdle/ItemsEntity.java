@@ -1,7 +1,17 @@
 package Itemdle;
 
-public class Items {
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+
+@Entity
+@Table(name = "items")
+public class ItemsEntity{
+
+    @Id
+    @Column(name = "id", unique = true)
     private int id;
+
     private String img_src;
     private String name;
     private String user;
@@ -11,6 +21,39 @@ public class Items {
     private int price;
     private boolean buyable;
     private boolean upgrade;
+
+    public ItemsEntity(){
+
+    }
+
+    public ItemsEntity(int id, String img_src, String name, String user, String tag, String effect, String quality, int price, boolean buyable, boolean upgrade) {
+        this.id = id;
+        this.img_src = img_src;
+        this.name = name;
+        this.user = user;
+        this.tag = tag;
+        this.effect = effect;
+        this.quality = quality;
+        this.price = price;
+        this.buyable = buyable;
+        this.upgrade = upgrade;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemsEntity{" +
+                "id=" + id +
+                ", img_src='" + img_src + '\'' +
+                ", name='" + name + '\'' +
+                ", user='" + user + '\'' +
+                ", tag='" + tag + '\'' +
+                ", effect='" + effect + '\'' +
+                ", quality='" + quality + '\'' +
+                ", price=" + price +
+                ", buyable=" + buyable +
+                ", upgrade=" + upgrade +
+                '}';
+    }
 
     public int getId() {
         return id;

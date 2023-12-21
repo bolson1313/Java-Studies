@@ -8,12 +8,14 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.List;
 import java.util.Objects;
 
-public class MainWindow extends Application {
+public class MainWindow extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
+        new DBexecute();
         //tu dla testu otwieram gamewindow.fxml, proba naprawy bledu
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main" +
                 "Window.fxml")));
@@ -21,7 +23,6 @@ public class MainWindow extends Application {
 
         //style
         //mainScene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
-
 
 
         //title and window icon
@@ -40,6 +41,7 @@ public class MainWindow extends Application {
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 }

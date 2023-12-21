@@ -7,7 +7,8 @@ module ItemdleApplication {
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
     requires java.sql;
+    requires java.base;
 
-    opens Itemdle to javafx.fxml, org.controlsfx.controls, javafx.base, org.hibernate.orm.core;
+    opens Itemdle to javafx.fxml, org.controlsfx.controls, javafx.base, org.hibernate.orm.core, java.base;
     exports Itemdle;
 }
