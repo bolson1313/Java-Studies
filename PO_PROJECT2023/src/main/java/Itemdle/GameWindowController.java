@@ -7,18 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -54,9 +50,6 @@ public class GameWindowController implements Initializable{
     private AnchorPane anchorGamePane;
 
     @FXML
-    private Button button;
-
-    @FXML
     private TextField textInput;
 
     @FXML
@@ -79,32 +72,39 @@ public class GameWindowController implements Initializable{
 
     @FXML
     void clearButton(ActionEvent event) {
+        //clearing button
         paneInScroll.getChildren().clear();
         itemsArray = new DBexecute().getItemsToArray();
+
+        //restarting textfields
         textInput.clear();
         autocompleteText.dispose();
         System.out.println("restart:" +itemsArray.toString());
         textInput.setDisable(false);
         usedItems = new ArrayList<>();
         int randomIndex;
+
+        //get random item into arraylist
         Random random = new Random();
         randomIndex = random.nextInt(1, itemsArray.size());
         RandomItem = new DBexecute().getRandomItem(randomIndex);
         System.out.println("random: "+RandomItem.toString());
         namesHbox.setVisible(true);
+        autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
     }
 
     @FXML
     void submitButton(ActionEvent event) {
-        addTextInput();
+        addTextInput(textInput.getText());
     }
     @FXML
     void textSubmitByClick(ActionEvent event) {
-        addTextInput();
+        addTextInput(textInput.getText());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //initialize textfields
         anchorGamePane.setLayoutX(0);
         anchorGamePane.setLayoutY(0);
         autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
@@ -114,20 +114,28 @@ public class GameWindowController implements Initializable{
 
     //blokada tych samych itemow i wygrana :)
     private void addingHbox(String itemname){
+        //main hbox
         HBox wonHbox = new HBox();
+        //get typed item into arraylist
         itemListEntity = new DBexecute().getEntityToList(textInput.getText());
         if(itemListEntity.isEmpty()){
             System.out.println("puste");
             textInput.clear();
-            addTextInput();
+            addTextInput(textInput.getText());
         }
+        //validation
         else if (!usedItems.contains(textInput.getText()) &&(!(itemListEntity.get(0).equals(RandomItem.get(0))))){
-            textInput.setStyle("-fx-border: green;");
             usedItems.add(textInput.getText());
-            //hbox with item stats
-            //odstepy miedzi komorkami 42px
-            //paddnig boki 20px
-            //razem 62 px
+
+            textInput.clear();
+            textInput.setStyle("-fx-border-color: green;-fx-border-width: 2px;");
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.playFromStart();
+            pause.setOnFinished(actionEvent -> {textInput.setStyle("");});
+            System.out.println("used item: "+usedItems.toString());
+
+
+            //hbox in scroll and flow pane
             HBox hbox = new HBox();
             hbox.setPrefHeight(100);
             hbox.setPrefWidth(862);
@@ -137,10 +145,10 @@ public class GameWindowController implements Initializable{
             hbox.setPadding(insets);
 
 
-            //kolekcja dla nodow
+            //collection for nodes
             ArrayList<Node> nodeArrayList = new ArrayList<>();
 
-            //ustawienie zdjecia przedmiotu
+            //seting a imageview to item icon
             ImageView imageView = new ImageView();
             Image itemImage = new Image("file:src/main/resources/images/itemsIcons/"+itemListEntity.get(0).getImg_src());
             imageView.setImage(itemImage);
@@ -149,7 +157,7 @@ public class GameWindowController implements Initializable{
             imageView.setFitWidth(100);
             nodeArrayList.add(imageView);
 
-            //podpowiedz o nazwie itemu
+            //hint if u hover on item icon it tells u the name of item u typed
             Tooltip tooltip = new Tooltip(itemname);
             Tooltip.install(imageView, tooltip);
 
@@ -171,20 +179,24 @@ public class GameWindowController implements Initializable{
 
 
             //tags
-            Label tagLabel = new Label(itemListEntity.get(0).getTag());
+            Label tagLabel = new Label(tagItem(itemListEntity.get(0).getTag()).toString());
             tagLabel.setId("hboxCell");
             tagLabel.setWrapText(true);
             tagLabel.setTextAlignment(TextAlignment.CENTER);
             tagLabel.setAlignment(Pos.CENTER);
-            tagLabel.setPrefHeight(100);
-            tagLabel.setPrefWidth(100);
+            tagLabel.setMinWidth(98);
+            tagLabel.setMaxWidth(98);
+            tagLabel.setMinHeight(98);
             tagLabel.setWrapText(true);
             if(RandomItem.get(0).getTag().equals(itemListEntity.get(0).getTag()))
             {
                 tagLabel.setStyle("-fx-background-color: #1ED53C");
+            } else if(containsArrayListElements((RandomItem.get(0).getTag()) ,  tagsInArrayList(itemListEntity.get(0).getTag()))) {
+                tagLabel.setStyle("-fx-background-color: #E28E2D");
             } else {
                 tagLabel.setStyle("-fx-background-color: #FF3C00");
             }
+
             nodeArrayList.add(tagLabel);
 
 
@@ -281,9 +293,9 @@ public class GameWindowController implements Initializable{
             }
             nodeArrayList.add(upgradeLabel);
 
-            //kolekcja nodow
+            //node collection
 
-            //dodawanie elemtnow do hboxa i scrolla
+            //adding all elements in into hbox
             hbox.setId("hboxScroll");
             hbox.getChildren().addAll(nodeArrayList);
 
@@ -293,6 +305,7 @@ public class GameWindowController implements Initializable{
             paneInScroll.getChildren().addAll(hbox);
             wonHbox = hbox;
         }
+        //check if typed item is in db and if it fits random item then setdisable buttons
         if(!itemListEntity.isEmpty() && itemListEntity.get(0).getName().equals(RandomItem.get(0).getName())){
             textInput.setDisable(true);
             paneInScroll.getChildren().clear();
@@ -304,11 +317,12 @@ public class GameWindowController implements Initializable{
 
     }
 
-    public void addTextInput(){
+    public void addTextInput(String input){
+        //get input from textinput validation if empty change style wait 1s and set style back
         if(!textInput.getText().isEmpty()){
             addingHbox(textInput.getText());
-            itemsArray.remove(textInput.getText());
-            System.out.println("itemsarray"+itemsArray.toString());
+            itemsArray.remove(input);
+            System.out.println("itemsarray"+textInput.getText());
             textInput.clear();
             autocompleteText.dispose();
             autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
@@ -317,9 +331,70 @@ public class GameWindowController implements Initializable{
             textInput.setStyle("-fx-border-color: red;-fx-border-width: 2px;");
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
                 pause.playFromStart();
-                pause.setOnFinished(actionEvent -> {textInput.setStyle("-fx-border-color: green;-fx-border-widht: 2px;");});
-            //textInput.setDisable(true);
+                pause.setOnFinished(actionEvent -> {textInput.setStyle("");});
         }
+    }
+
+
+    // get String to Array and then return arraylist with full tag names
+    private ArrayList<String> tagItem(String input){
+        ArrayList<String> tagsArray = new ArrayList<>();
+        ArrayList<String> outputString = new ArrayList<>();
+        if (input != null && !input.isEmpty()) {
+            String[] elements = input.split(",");
+
+            tagsArray.addAll(Arrays.asList(elements));
+        }
+        for(String element : tagsArray) {
+            switch (element) {
+                case "AD":
+                    outputString.add("Attack Damage");
+                    break;
+                case "AP":
+                    outputString.add("Ability Power");
+                    break;
+                case "HP":
+                    outputString.add("Health");
+                    break;
+                case "HPR":
+                    outputString.add("Health Regeneration");
+                    break;
+                case "MREG":
+                    outputString.add("Mana Regeneration");
+                    break;
+                case "MANA":
+                    outputString.add("Mana");
+                    break;
+                default:
+                    outputString.add("None");
+                    break;
+            }
+        }
+        return outputString;
+    }
+
+    // get String and then return it as arraylist element
+    private ArrayList<String> tagsInArrayList(String input){
+        ArrayList<String> tagsArray = new ArrayList<>();
+        if (input != null && !input.isEmpty()) {
+            // Dzieli wejściowy String na podstawie przecinka
+            String[] elements = input.split(",");
+
+            // Dodaje elementy do ArrayList
+            tagsArray.addAll(Arrays.asList(elements));
+        }
+        return tagsArray;
+    }
+
+
+    //check if arraylist contains a String
+    public static boolean containsArrayListElements(String input, ArrayList<String> arrayList) {
+        for (String element : arrayList) {
+            if (input.contains(element)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

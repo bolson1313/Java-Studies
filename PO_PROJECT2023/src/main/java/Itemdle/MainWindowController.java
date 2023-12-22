@@ -32,8 +32,9 @@ public class MainWindowController {
     }
 
     @FXML
-    void switchToStats(ActionEvent event) {
+    void switchToStats(ActionEvent event) throws IOException {
         System.out.println("statsWindow");
-    } // tutaj jakas baza danych w wszystkimi wynikami :)5
+        new SceneSwitch(menuScene, "StatsWindow.fxml");
+    }
 
 }

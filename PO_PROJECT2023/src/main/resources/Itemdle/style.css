@@ -37,3 +37,16 @@
     -fx-border-style: solid;
     -fx-padding: 5;
 }
+
+#textFieldInput{
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
+    -fx-font-size: 15px;
+    -fx-background-color: #3C6C7D;
+    -fx-border-color: #1E587A;
+    -fx-border-width: 2px;
+    -fx-cursor: hand;
+}
+#textFieldInput:hover{
+    -fx-cursor: text;
+}
