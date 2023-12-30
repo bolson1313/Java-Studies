@@ -4,6 +4,7 @@ package Itemdle;
 import org.controlsfx.control.PropertySheet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class DBexecute {
     private final Configuration configuration = new Configuration().configure("file:src/main/resources/Itemdle/hibernate.cfg.xml");
     private final SessionFactory factory = configuration.buildSessionFactory();
+
 
     public DBexecute() {
     }
@@ -45,6 +47,24 @@ public class DBexecute {
             List<ItemsEntity> itmList = query.list();
             System.out.println(itmList.toString());
             return itmList;
+        }
+    }
+
+    public List<StatsEntity> getStatsToList(){
+        try(Session session = factory.openSession()){
+            Query query = session.createQuery("FROM StatsEntity se");
+            List<StatsEntity> statsList = query.list();
+            System.out.println(statsList.toString());
+            return statsList;
+        }
+    }
+
+    public void insertStat(Stats stats){
+        try(Session session = factory.openSession()){
+            Transaction transaction = session.beginTransaction();
+            Query query = session.createQuery("INSERT StatsEntity (id, itemName, tries, datetime) VALUES (null, '"+stats.getItemName()+"', "+stats.getTries()+", '"+stats.getDatetime()+"')");
+            query.executeUpdate();
+            transaction.commit();
         }
     }
 }

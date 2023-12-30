@@ -1,0 +1,19 @@
+.table-view {
+    -fx-background-color: #275570; /* Kolor tła tabeli */
+}
+
+.table-view .column-header {
+    -fx-background-color: #00629B;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #6289AF; /* Kolor tła wiersza */
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #4E7992; /* Kolor tła co drugiego wiersza */
+}
+
+.table-view .table-cell {
+    -fx-alignment: CENTER; /* Wyrównanie tekstu w komórce do środka */
+}

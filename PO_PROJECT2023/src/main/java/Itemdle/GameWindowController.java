@@ -23,6 +23,8 @@ import org.controlsfx.control.textfield.TextFields;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class GameWindowController implements Initializable{
@@ -35,6 +37,9 @@ public class GameWindowController implements Initializable{
     private static List<ItemsEntity> RandomItem = null;
 
     private static ArrayList<String> usedItems = new ArrayList<>();
+    private static int NumberOfTries = 0;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static LocalDateTime dateTime;
     public GameWindowController(){
         if(itemsArray.isEmpty()){
             itemsArray = new DBexecute().getItemsToArray();
@@ -84,6 +89,7 @@ public class GameWindowController implements Initializable{
         usedItems = new ArrayList<>();
         int randomIndex;
 
+        NumberOfTries = 0;
         //get random item into arraylist
         Random random = new Random();
         randomIndex = random.nextInt(1, itemsArray.size());
@@ -127,6 +133,7 @@ public class GameWindowController implements Initializable{
         else if (!usedItems.contains(textInput.getText()) &&(!(itemListEntity.get(0).equals(RandomItem.get(0))))){
             usedItems.add(textInput.getText());
 
+            NumberOfTries++;
             textInput.clear();
             textInput.setStyle("-fx-border-color: green;-fx-border-width: 2px;");
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
@@ -151,6 +158,7 @@ public class GameWindowController implements Initializable{
             //seting a imageview to item icon
             ImageView imageView = new ImageView();
             Image itemImage = new Image("file:src/main/resources/images/itemsIcons/"+itemListEntity.get(0).getImg_src());
+            System.out.println("file:src/main/resources/images/itemsIcons/"+itemListEntity.get(0).getImg_src());
             imageView.setImage(itemImage);
             imageView.setId("hboxCell");
             imageView.setFitHeight(100);
@@ -184,9 +192,8 @@ public class GameWindowController implements Initializable{
             tagLabel.setWrapText(true);
             tagLabel.setTextAlignment(TextAlignment.CENTER);
             tagLabel.setAlignment(Pos.CENTER);
-            tagLabel.setMinWidth(98);
-            tagLabel.setMaxWidth(98);
-            tagLabel.setMinHeight(98);
+            tagLabel.setPrefHeight(100);
+            tagLabel.setPrefWidth(100);
             tagLabel.setWrapText(true);
             if(RandomItem.get(0).getTag().equals(itemListEntity.get(0).getTag()))
             {
@@ -312,6 +319,11 @@ public class GameWindowController implements Initializable{
             namesHbox.setVisible(false);
             Label wonLabel = new Label("You Guessed Correctly!");
             wonLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: yellow;");
+
+            dateTime = LocalDateTime.now();
+            String formattedDateTime = dateTime.format(formatter);
+            new DBexecute().insertStat(new Stats(itemListEntity.get(0).getName(), NumberOfTries, formattedDateTime));
+
             paneInScroll.getChildren().addAll(wonLabel, wonHbox);
         }
 
@@ -396,7 +408,4 @@ public class GameWindowController implements Initializable{
         }
         return false;
     }
-
-
-
 }
