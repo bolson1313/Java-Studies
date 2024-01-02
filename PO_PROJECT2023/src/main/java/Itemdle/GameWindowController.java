@@ -48,7 +48,7 @@ public class GameWindowController implements Initializable{
         Random random = new Random();
         randomIndex = random.nextInt(1, itemsArray.size());
         RandomItem = new DBexecute().getRandomItem(randomIndex);
-        System.out.println("random: "+RandomItem.toString());
+        //System.out.println("random: "+RandomItem.toString());
     }
     private static AutoCompletionBinding<String> autocompleteText;
     @FXML
@@ -65,13 +65,13 @@ public class GameWindowController implements Initializable{
 
     @FXML
     void backToMenu(ActionEvent event) throws IOException {
-        System.out.println("back to main window");
+        //System.out.println("back to main window");
         new SceneSwitch(anchorGamePane, "MainWindow.fxml");
     }
 
     @FXML
     void exitButton(ActionEvent event) {
-        System.out.println("byebye!");
+        //System.out.println("byebye!");
         System.exit(1);
     }
 
@@ -84,7 +84,7 @@ public class GameWindowController implements Initializable{
         //restarting textfields
         textInput.clear();
         autocompleteText.dispose();
-        System.out.println("restart:" +itemsArray.toString());
+        //System.out.println("restart:" +itemsArray.toString());
         textInput.setDisable(false);
         usedItems = new ArrayList<>();
         int randomIndex;
@@ -94,7 +94,7 @@ public class GameWindowController implements Initializable{
         Random random = new Random();
         randomIndex = random.nextInt(1, itemsArray.size());
         RandomItem = new DBexecute().getRandomItem(randomIndex);
-        System.out.println("random: "+RandomItem.toString());
+        //System.out.println("random: "+RandomItem.toString());
         namesHbox.setVisible(true);
         autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
     }
@@ -125,7 +125,7 @@ public class GameWindowController implements Initializable{
         //get typed item into arraylist
         itemListEntity = new DBexecute().getEntityToList(textInput.getText());
         if(itemListEntity.isEmpty()){
-            System.out.println("puste");
+            //System.out.println("puste");
             textInput.clear();
             addTextInput(textInput.getText());
         }
@@ -139,7 +139,7 @@ public class GameWindowController implements Initializable{
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.playFromStart();
             pause.setOnFinished(actionEvent -> {textInput.setStyle("");});
-            System.out.println("used item: "+usedItems.toString());
+            //System.out.println("used item: "+usedItems.toString());
 
 
             //hbox in scroll and flow pane
@@ -157,8 +157,9 @@ public class GameWindowController implements Initializable{
 
             //seting a imageview to item icon
             ImageView imageView = new ImageView();
-            Image itemImage = new Image("file:src/main/resources/images/itemsIcons/"+itemListEntity.get(0).getImg_src());
-            System.out.println("file:src/main/resources/images/itemsIcons/"+itemListEntity.get(0).getImg_src());
+            //Image itemImage = new Image("file:src/main/resources/images/itemsIcons/"+itemListEntity.get(0).getImg_src());
+            Image itemImage = new Image(getClass().getResource("/images/itemsIcons/")+itemListEntity.get(0).getImg_src());
+            //System.out.println("file:src/main/resources/images/itemsIcons/"+itemListEntity.get(0).getImg_src());
             imageView.setImage(itemImage);
             imageView.setId("hboxCell");
             imageView.setFitHeight(100);
@@ -323,7 +324,7 @@ public class GameWindowController implements Initializable{
             dateTime = LocalDateTime.now();
             String formattedDateTime = dateTime.format(formatter);
             new DBexecute().insertStat(new Stats(itemListEntity.get(0).getName(), NumberOfTries, formattedDateTime));
-
+            NumberOfTries = 0;
             paneInScroll.getChildren().addAll(wonLabel, wonHbox);
         }
 
@@ -334,7 +335,7 @@ public class GameWindowController implements Initializable{
         if(!textInput.getText().isEmpty()){
             addingHbox(textInput.getText());
             itemsArray.remove(input);
-            System.out.println("itemsarray"+textInput.getText());
+            //System.out.println("itemsarray"+textInput.getText());
             textInput.clear();
             autocompleteText.dispose();
             autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);

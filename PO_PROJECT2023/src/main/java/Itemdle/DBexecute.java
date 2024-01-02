@@ -13,8 +13,7 @@ import java.util.List;
 
 
 public class DBexecute {
-    private final Configuration configuration = new Configuration().configure("file:src/main/resources/Itemdle/hibernate.cfg.xml");
-    private final SessionFactory factory = configuration.buildSessionFactory();
+    private final SessionFactory factory = new Configuration().configure().buildSessionFactory();
 
 
     public DBexecute() {
@@ -37,7 +36,7 @@ public class DBexecute {
         try(Session session = factory.openSession()){
             Query query = session.createQuery("from ItemsEntity IE where IE.name='"+name+"'");
             List<ItemsEntity> itmList = query.list();
-            System.out.println(itmList.toString());
+            //System.out.println(itmList.toString());
             return itmList;
         }
     }
@@ -45,7 +44,7 @@ public class DBexecute {
         try(Session session = factory.openSession()){
             Query query = session.createQuery("from ItemsEntity IE where IE.id="+index);
             List<ItemsEntity> itmList = query.list();
-            System.out.println(itmList.toString());
+            //System.out.println(itmList.toString());
             return itmList;
         }
     }
@@ -54,7 +53,7 @@ public class DBexecute {
         try(Session session = factory.openSession()){
             Query query = session.createQuery("FROM StatsEntity se");
             List<StatsEntity> statsList = query.list();
-            System.out.println(statsList.toString());
+            //System.out.println(statsList.toString());
             return statsList;
         }
     }

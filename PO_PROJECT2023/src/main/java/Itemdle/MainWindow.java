@@ -27,7 +27,8 @@ public class MainWindow extends Application{
 
         //title and window icon
         stage.setTitle("League of Legends - Itemdle");
-        Image Icon = new Image("file:src/main/resources/images/windowicon.png");
+        //Image Icon = new Image("file:src/main/resources/images/windowicon.png");
+        Image Icon = new Image(getClass().getResourceAsStream("/images/windowicon.png"));
         stage.getIcons().add(Icon);
 
         //window size

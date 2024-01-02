@@ -24,13 +24,13 @@ public class StatsWindowController implements Initializable {
     private TableView<StatsEntity> tableView = new TableView<StatsEntity>();
     @FXML
     void backToMenu(ActionEvent event) throws IOException {
-        System.out.println("back to main window");
+        //System.out.println("back to main window");
         new SceneSwitch(mainStatsPane, "MainWindow.fxml");
     }
 
     @FXML
     void exitButton(ActionEvent event) {
-        System.out.println("byebye!");
+        //System.out.println("byebye!");
         System.exit(1);
     }
 
