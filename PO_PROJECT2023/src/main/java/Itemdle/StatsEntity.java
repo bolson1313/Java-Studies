@@ -1,59 +1,51 @@
 package Itemdle;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "playedgames")
 public class StatsEntity {
     @Id
-    @Column(name = "id", unique = true)
-    private int id;
-    @Column(name = "guessed_item")
-    private String itemName;
+    private int stat_id;
+    private String guessed_item;
+    @ManyToOne
+    @JoinColumn(name = "fk_guessed_item_id")
+    private ItemsEntity fk_guessed_item_id;
     private int tries;
-    @Column(name = "date")
-    private String datetime;
+    private String date;
 
     public StatsEntity() {
     }
 
-    public StatsEntity(int id, String itemName, int tries, String datetime) {
-        this.id = id;
-        this.itemName = itemName;
+    public StatsEntity(String guessed_item, ItemsEntity fk_guessed_item_id, int tries, String date) {
+        this.guessed_item = guessed_item;
+        this.fk_guessed_item_id = fk_guessed_item_id;
         this.tries = tries;
-        this.datetime = datetime;
+        this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Stats{" +
-                "id=" + id +
-                ", itemName='" + itemName + '\'' +
-                ", tries=" + tries +
-                ", datetime=" + datetime +
-                '}';
+    public int getStat_id() {
+        return stat_id;
     }
 
-    public int getId() {
-        return id;
+    public void setStat_id(int stat_id) {
+        this.stat_id = stat_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getGuessed_item() {
+        return guessed_item;
     }
 
-    public String getItemName() {
-        return itemName;
+    public void setGuessed_item(String guessed_item) {
+        this.guessed_item = guessed_item;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public int getFk_guessed_item_id() {
+        return fk_guessed_item_id.getItem_id();
+    }
+
+    public void setFk_guessed_item_id(ItemsEntity fk_guessed_item_id) {
+        this.fk_guessed_item_id = fk_guessed_item_id;
     }
 
     public int getTries() {
@@ -64,11 +56,11 @@ public class StatsEntity {
         this.tries = tries;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getDate() {
+        return date;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setDate(String date) {
+        this.date = date;
     }
 }
