@@ -42,13 +42,13 @@ public class GameWindowController implements Initializable{
     private static LocalDateTime dateTime;
     public GameWindowController(){
         if(itemsArray.isEmpty()){
-            itemsArray = new DBexecute().getItemsToArray();
+            itemsArray = new DataBase().getItemsToArray();
         }
         int randomIndex;
         Random random = new Random();
         randomIndex = random.nextInt(1, itemsArray.size());
-        RandomItem = new DBexecute().getRandomItem(randomIndex);
-        //System.out.println("random: "+RandomItem.toString());
+        RandomItem = new DataBase().getRandomItem(randomIndex);
+        System.out.println("random item: "+RandomItem.get(0));
     }
     private static AutoCompletionBinding<String> autocompleteText;
     @FXML
@@ -79,7 +79,7 @@ public class GameWindowController implements Initializable{
     void clearButton(ActionEvent event) {
         //clearing button
         paneInScroll.getChildren().clear();
-        itemsArray = new DBexecute().getItemsToArray();
+        itemsArray = new DataBase().getItemsToArray();
 
         //restarting textfields
         textInput.clear();
@@ -93,7 +93,7 @@ public class GameWindowController implements Initializable{
         //get random item into arraylist
         Random random = new Random();
         randomIndex = random.nextInt(1, itemsArray.size());
-        RandomItem = new DBexecute().getRandomItem(randomIndex);
+        RandomItem = new DataBase().getRandomItem(randomIndex);
         //System.out.println("random: "+RandomItem.toString());
         namesHbox.setVisible(true);
         autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
@@ -123,7 +123,7 @@ public class GameWindowController implements Initializable{
         //main hbox
         HBox wonHbox = new HBox();
         //get typed item into arraylist
-        itemListEntity = new DBexecute().getEntityToList(textInput.getText());
+        itemListEntity = new DataBase().getEntityToList(textInput.getText());
         if(itemListEntity.isEmpty()){
             //System.out.println("puste");
             textInput.clear();
@@ -323,7 +323,7 @@ public class GameWindowController implements Initializable{
 
             dateTime = LocalDateTime.now();
             String formattedDateTime = dateTime.format(formatter);
-            new DBexecute().insertStat(new Stats(itemListEntity.get(0).getName(), NumberOfTries, formattedDateTime));
+            new DataBase().saveStats(new StatsEntity(itemListEntity.get(0).getName(), itemListEntity.get(0), NumberOfTries, formattedDateTime));
             NumberOfTries = 0;
             paneInScroll.getChildren().addAll(wonLabel, wonHbox);
         }
