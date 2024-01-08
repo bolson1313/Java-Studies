@@ -1,17 +1,18 @@
 package Itemdle;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
-public class ItemsEntity{
-
+public class ItemsEntity {
     @Id
-    @Column(name = "id", unique = true)
-    private int id;
-
+    private int item_id;
     private String img_src;
     private String name;
     private String user;
@@ -22,27 +23,16 @@ public class ItemsEntity{
     private boolean buyable;
     private boolean upgrade;
 
-    public ItemsEntity(){
+    @OneToMany(mappedBy = "fk_guessed_item_id")
+    private List<StatsEntity> fk_item_id = new ArrayList<>();
 
-    }
-
-    public ItemsEntity(int id, String img_src, String name, String user, String tag, String effect, String quality, int price, boolean buyable, boolean upgrade) {
-        this.id = id;
-        this.img_src = img_src;
-        this.name = name;
-        this.user = user;
-        this.tag = tag;
-        this.effect = effect;
-        this.quality = quality;
-        this.price = price;
-        this.buyable = buyable;
-        this.upgrade = upgrade;
+    public ItemsEntity() {
     }
 
     @Override
     public String toString() {
         return "ItemsEntity{" +
-                "id=" + id +
+                "item_id=" + item_id +
                 ", img_src='" + img_src + '\'' +
                 ", name='" + name + '\'' +
                 ", user='" + user + '\'' +
@@ -55,20 +45,20 @@ public class ItemsEntity{
                 '}';
     }
 
-    public int getId() {
-        return id;
+    public int getItem_id() {
+        return item_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
     }
 
     public String getImg_src() {
         return img_src;
     }
 
-    public void setImg_src(String img_src) {
-        this.img_src = img_src;
+    public void setImg_src(String img_srd) {
+        this.img_src = img_srd;
     }
 
     public String getName() {
