@@ -33,7 +33,7 @@ public class GameWindowController implements Initializable{
 
     private static List<ItemsEntity> itemListEntity = null;
 
-    private static ArrayList<String> itemsArray = new ArrayList<>();
+    private static ArrayList<String> itemsNamesArray = new ArrayList<>();
     private static List<ItemsEntity> RandomItem = null;
 
     private static ArrayList<String> usedItems = new ArrayList<>();
@@ -41,13 +41,13 @@ public class GameWindowController implements Initializable{
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static LocalDateTime dateTime;
     public GameWindowController(){
-        if(itemsArray.isEmpty()){
-            itemsArray = new DataBase().getItemsToArray();
+        if(itemsNamesArray.isEmpty()){
+            itemsNamesArray = new DataBase().getItemsToArray();
         }
         int randomIndex;
         Random random = new Random();
-        randomIndex = random.nextInt(1, itemsArray.size());
-        RandomItem = new DataBase().getRandomItem(randomIndex);
+        randomIndex = random.nextInt(0, itemsNamesArray.size());
+        RandomItem = new DataBase().getRandomItemByName(itemsNamesArray.get(randomIndex));
         System.out.println("random item: "+RandomItem.get(0));
     }
     private static AutoCompletionBinding<String> autocompleteText;
@@ -79,7 +79,7 @@ public class GameWindowController implements Initializable{
     void clearButton(ActionEvent event) {
         //clearing button
         paneInScroll.getChildren().clear();
-        itemsArray = new DataBase().getItemsToArray();
+        itemsNamesArray = new DataBase().getItemsToArray();
 
         //restarting textfields
         textInput.clear();
@@ -92,11 +92,11 @@ public class GameWindowController implements Initializable{
         NumberOfTries = 0;
         //get random item into arraylist
         Random random = new Random();
-        randomIndex = random.nextInt(1, itemsArray.size());
-        RandomItem = new DataBase().getRandomItem(randomIndex);
-        //System.out.println("random: "+RandomItem.toString());
+        randomIndex = random.nextInt(1, itemsNamesArray.size());
+        RandomItem = new DataBase().getRandomItemByName(itemsNamesArray.get(randomIndex));
+        System.out.println("random item: "+RandomItem.toString());
         namesHbox.setVisible(true);
-        autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
+        autocompleteText = TextFields.bindAutoCompletion(textInput, itemsNamesArray);
     }
 
     @FXML
@@ -113,17 +113,14 @@ public class GameWindowController implements Initializable{
         //initialize textfields
         anchorGamePane.setLayoutX(0);
         anchorGamePane.setLayoutY(0);
-        autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
+        autocompleteText = TextFields.bindAutoCompletion(textInput, itemsNamesArray);
     }
 
-
-
-    //blokada tych samych itemow i wygrana :)
     private void addingHbox(String itemname){
         //main hbox
         HBox wonHbox = new HBox();
         //get typed item into arraylist
-        itemListEntity = new DataBase().getEntityToList(textInput.getText());
+        itemListEntity = new DataBase().getEntityToListByName(textInput.getText());
         if(itemListEntity.isEmpty()){
             //System.out.println("puste");
             textInput.clear();
@@ -334,11 +331,11 @@ public class GameWindowController implements Initializable{
         //get input from textinput validation if empty change style wait 1s and set style back
         if(!textInput.getText().isEmpty()){
             addingHbox(textInput.getText());
-            itemsArray.remove(input);
+            itemsNamesArray.remove(input);
             //System.out.println("itemsarray"+textInput.getText());
             textInput.clear();
             autocompleteText.dispose();
-            autocompleteText = TextFields.bindAutoCompletion(textInput, itemsArray);
+            autocompleteText = TextFields.bindAutoCompletion(textInput, itemsNamesArray);
         } else{
             textInput.clear();
             textInput.setStyle("-fx-border-color: red;-fx-border-width: 2px;");
@@ -390,10 +387,8 @@ public class GameWindowController implements Initializable{
     private ArrayList<String> tagsInArrayList(String input){
         ArrayList<String> tagsArray = new ArrayList<>();
         if (input != null && !input.isEmpty()) {
-            // Dzieli wejściowy String na podstawie przecinka
             String[] elements = input.split(",");
 
-            // Dodaje elementy do ArrayList
             tagsArray.addAll(Arrays.asList(elements));
         }
         return tagsArray;
