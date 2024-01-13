@@ -50,3 +50,48 @@
 #textFieldInput:hover{
     -fx-cursor: text;
 }
+
+.choice-box {
+    -fx-font-size: 14px;
+    -fx-font-family: Verdana;
+    -fx-padding: 3px;
+    -fx-background-color: #4F8BA1;
+    -fx-border-color: #1E587A;
+    -fx-border-width: 1px;
+    -fx-mark-color: white;
+}
+.choice-box > .label {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+ }
+
+.choice-box:hover {
+    -fx-background-color: #437384;
+}
+
+.choice-box .context-menu {
+    -fx-text-fill: white;
+    -fx-background-color: #437384;
+    -fx-min-width: 302px;
+ }
+
+.choice-box .context-menu .menu-item {
+     -fx-alignment: CENTER;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #1F6077;
+    }
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box:selected {
+    -fx-background-color: #007acc;
+    -fx-text-fill: #fff;
+}
