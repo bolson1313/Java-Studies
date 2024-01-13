@@ -20,13 +20,12 @@ public class AboutWindowController implements Initializable {
 
     @FXML
     void backToMenuButton(ActionEvent event) throws IOException {
-        //System.out.println("back to main");
+        System.out.println("back to main");
         new SceneSwitch(anchorPane, "MainWindow.fxml");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Image image = new Image("file:src/main/resources/images/aboutimage.PNG");
         Image image = new Image(getClass().getResourceAsStream("/images/aboutimage.PNG"));
         aboutImage.setImage(image);
     }
