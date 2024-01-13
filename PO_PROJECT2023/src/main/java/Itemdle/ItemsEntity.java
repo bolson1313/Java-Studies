@@ -1,9 +1,6 @@
 package Itemdle;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +11,21 @@ public class ItemsEntity {
     @Id
     private int item_id;
     private String img_src;
+    @Column(updatable = true)
     private String name;
+    @Column(updatable = true)
     private String user;
+    @Column(updatable = true)
     private String tag;
+    @Column(updatable = true)
     private String effect;
+    @Column(updatable = true)
     private String quality;
+    @Column(updatable = true)
     private int price;
+    @Column(updatable = true)
     private boolean buyable;
+    @Column(updatable = true)
     private boolean upgrade;
 
     @OneToMany(mappedBy = "fk_guessed_item_id")
@@ -43,6 +48,18 @@ public class ItemsEntity {
                 ", buyable=" + buyable +
                 ", upgrade=" + upgrade +
                 '}';
+    }
+
+    public ItemsEntity(String img_src, String name, String user, String tag, String effect, String quality, int price, boolean buyable, boolean upgrade) {
+        this.img_src = img_src;
+        this.name = name;
+        this.user = user;
+        this.tag = tag;
+        this.effect = effect;
+        this.quality = quality;
+        this.price = price;
+        this.buyable = buyable;
+        this.upgrade = upgrade;
     }
 
     public int getItem_id() {
