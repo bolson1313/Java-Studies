@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="mainPane" fx:id="anchorPane" prefHeight="700.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Itemdle.MenageDBController">
+   <children>
+      <ImageView id="mainSeceneImage" fitHeight="134.0" fitWidth="522.0" layoutX="379.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/menuImage.png" />
+         </image>
+      </ImageView>
+      <HBox layoutX="29.0" layoutY="310.0" prefHeight="52.0" prefWidth="1235.0" spacing="10.0">
+         <children>
+            <Button id="smallbutton" mnemonicParsing="false" onAction="#addImageBtn" prefHeight="52.0" prefWidth="164.0" stylesheets="@buttonStyle.css" text="Image">
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Button>
+            <TextField id="textFieldInput" fx:id="itemNameInput" alignment="CENTER" prefHeight="52.0" prefWidth="164.0" promptText="Item name" />
+            <TextField id="textFieldInput" fx:id="UserInput" alignment="CENTER" prefHeight="52.0" prefWidth="164.0" promptText="User" />
+            <TextField id="textFieldInput" fx:id="TagInput" alignment="CENTER" prefHeight="52.0" prefWidth="164.0" promptText="Tag" />
+            <TextField id="textFieldInput" fx:id="EffectInput" alignment="CENTER" prefHeight="52.0" prefWidth="164.0" promptText="Effect" />
+            <TextField id="textFieldInput" fx:id="QualityInput" alignment="CENTER" prefHeight="52.0" prefWidth="164.0" promptText="Quality" />
+            <TextField id="textFieldInput" fx:id="PriceInput" alignment="CENTER" prefHeight="52.0" prefWidth="164.0" promptText="Price" />
+            <CheckBox fx:id="BuyableInput" mnemonicParsing="false" prefHeight="52.0" prefWidth="110.0" text="Buyable" textFill="#9e9e9e">
+               <font>
+                  <Font name="Verdana" size="13.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="UpgradeInput" mnemonicParsing="false" prefHeight="52.0" prefWidth="110.0" text="Upgrade" textFill="#9e9e9e">
+               <font>
+                  <Font name="Verdana" size="13.0" />
+               </font>
+            </CheckBox>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </HBox>
+      <Button id="smallbutton" layoutX="564.0" layoutY="408.0" mnemonicParsing="false" onAction="#SubmitBtn" prefHeight="52.0" prefWidth="164.0" stylesheets="@buttonStyle.css" text="Submit">
+         <font>
+            <Font name="Verdana Bold" size="20.0" />
+         </font>
+      </Button>
+      <Label id="gameLabel" layoutX="520.0" layoutY="253.0" prefHeight="30.0" prefWidth="241.0" text="Add new Item to Data Base">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label id="gameLabel" layoutX="587.0" layoutY="505.0" text="Delete record">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button id="smallbutton" layoutX="60.0" layoutY="77.0" mnemonicParsing="false" onAction="#backToStats" stylesheets="@buttonStyle.css" text="Back to stats">
+         <font>
+            <Font name="Verdana Bold" size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/goback.gif" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button id="smallbutton" contentDisplay="RIGHT" layoutX="1121.0" layoutY="66.0" mnemonicParsing="false" onAction="#exitButton" stylesheets="@buttonStyle.css" text="EXIT">
+         <font>
+            <Font name="Verdana Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/exit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ChoiceBox fx:id="deleteChoiceBox" layoutX="495.0" layoutY="545.0" prefHeight="25.0" prefWidth="302.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ChoiceBox>
+   </children>
+</AnchorPane>
